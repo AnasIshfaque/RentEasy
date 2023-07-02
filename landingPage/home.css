@@ -1,0 +1,73 @@
+
+body{
+    overflow-x: hidden;
+}
+.formSection{
+    border: 2px solid black;
+    padding: 25px;
+    background: url("img/home.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: white;
+}
+.container{
+    margin-top:300px;
+    margin-bottom:100px;
+    text-align: center;
+    border: 2px solid gray;
+    border-radius:10px;
+}
+.container input{
+    margin-bottom:20px;
+    height: 40px;
+    width:200px;
+
+}
+.loaction input{
+    width:500px;
+}
+.container select{
+    height: 40px;
+    width:200px;
+}
+.fRow{
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+.form-check-input{
+    width:5em !important;
+    margin-left:15em !important;
+    height:2em !important;
+}
+.form-check label{
+    text-align: center;
+    padding-top:4px;
+    font-size: 1.5em;
+}
+.btn-Select{
+    width:10em;
+    margin-left:35em;
+    height: 3em;
+    border-radius:5px;
+}
+/* Advertise Section */
+
+.a-img{
+    height: 500px;
+    width: 87%;
+    margin-left: 110px;
+}
+
+.advertise{
+    text-align: center;
+    background-color: rgb(159, 159, 207);
+    padding-bottom:20px;
+}
+.service{
+    text-align: center;
+    width:100%;
+}
+.service button{
+    margin-top:100px;
+}
+
