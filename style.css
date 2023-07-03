@@ -1,0 +1,48 @@
+.each_person_data{
+    border: solid black 2px;
+}
+td.first_row_col{
+    padding-top: 25px;
+}
+span.badge{
+    font-size: 14px;
+}
+
+.row {
+    display: flex;
+  }
+  
+  .cell {
+    flex: 1;
+    padding: 5px;
+  }
+  
+footer,nav{
+  background-color: #172155;
+}
+span.badge{
+  background-color: F7F1F1;
+}
+
+form.updateForm{
+  margin: 1% 20% auto 20%;
+}
+button.editBtn{
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-top: 9px;
+}
+i.fa-circle-check,i.fa-trash{
+  font-size: larger;
+}
+i.update_driver,i.add_driver{
+  margin-left: 10%;
+  margin-right: 15%;
+}
+
+/* a.back{
+
+} */
+/* .badge badge-warning rounded-pill d-inline{
+
+} */
