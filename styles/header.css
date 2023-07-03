@@ -1,0 +1,76 @@
+.nav-item a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding-right:10px;
+}
+.nav-item{
+    margin-right:20px;
+}
+.navbar{
+    background-color: rgb(23,33,85);
+}
+.logo{
+    height:100px;
+}
+.User a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding-right:10px;
+    padding-bottom:4px;
+    /* background-color: rgba(65, 107, 177, 1); */
+    border-radius: 6px;
+    padding-left: 13px;
+}
+.User{
+    height: 31px;
+    width: 169px;
+}
+.signBtn{
+    background-color: rgb(211, 207, 201);
+    border: 0;
+    border-radius: 6px;
+    color: white;
+    
+}
+.signBtn:hover{
+    background-color: rgb(238, 184, 114);
+}
+.logBtn{
+    background-color: rgba(65, 107, 177, 1);
+    border: 0;
+    border-radius: 6px;
+    color: white;
+    transition-delay: 50ms;
+}
+.logBtn:hover{
+    background-color: rgb(120, 166, 245);
+}
+
+#modal {
+    text-align: center;
+    padding: 1em;
+    width: 400px;
+    border: 0;
+    box-shadow: 0 0 1em rgb(0 0 0 / .3);
+    border-radius: 6px;
+    & > * {
+        margin: 0 0 0.5rem 0;
+    }
+}
+
+.model_title{
+    display: inline;
+}
+.close-login{
+    border: 0;
+    float: right;
+    background-color: white;
+}
+form {
+    display: grid;
+    gap: 1em;
+  }
+  
+  

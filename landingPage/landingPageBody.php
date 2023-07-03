@@ -1,14 +1,9 @@
-<?php
-include "../landingPage/header.php"
-?>
-
-<head>
-  <link rel="stylesheet" href="/landingPage/home.css">
-</head>
-
-<body>
+  
   <!-- form section -->
   <div class="formSection">
+    <?php
+        include './loginPage/loginModal.php';
+    ?>
     <div class="container">
       <h1>Rent Today</h1>
       <form action="">
@@ -63,7 +58,7 @@ include "../landingPage/header.php"
         </div> -->
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="img/S-1.jpg" class="d-block a-img" alt="...">
+          <img src="assets/images/landpg/S-1.jpg" class="d-block a-img" alt="picture of offer 1">
           <div class="carousel-caption d-none d-md-block">
             <h5>50% off on SUV</h5>
             <p>Some representative placeholder content for the first slide.</p>
@@ -71,7 +66,7 @@ include "../landingPage/header.php"
           </div>
         </div>
         <div class="carousel-item">
-          <img src="img/S-2.jpg" class="d-block a-img" alt="...">
+          <img src="assets/images/landpg/S-2.jpg" class="d-block a-img" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>30% off on every long-term service</h5>
             <p>Some representative placeholder content for the second slide.</p>
@@ -79,7 +74,7 @@ include "../landingPage/header.php"
           </div>
         </div>
         <div class="carousel-item">
-          <img src="img/S-4.jpg" class="d-block a-img" alt="...">
+          <img src="assets/images/landpg/S-4.jpg" class="d-block a-img" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Special 10% off for our regular customer </h5>
             <p>Some representative placeholder content for the third slide.</p>
@@ -109,13 +104,13 @@ include "../landingPage/header.php"
         <div id="carouselExampleSlidesOnly" class="carousel slide s-slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="img/Service1.png" class="d-block w-100 sImg" alt="...">
+              <img src="assets/images/landpg/Service1.png" class="d-block w-100 sImg" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="img/Service2.png" class="d-block w-100 sImg" alt="...">
+              <img src="assets/images/landpg/Service2.png" class="d-block w-100 sImg" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="img/Service3.png" class="d-block w-100" alt="...">
+              <img src="assets/images/landpg/Service3.png" class="d-block w-100" alt="...">
             </div>
           </div>
         </div>
@@ -126,13 +121,13 @@ include "../landingPage/header.php"
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="img/Service1.png" class="d-block w-100" alt="...">
+              <img src="assets/images/landpg/Service1.png" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="img/Service2.png" class="d-block w-100" alt="...">
+              <img src="assets/images/landpg/Service2.png" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-              <img src="img/Service3.png" class="d-block w-100" alt="...">
+              <img src="assets/images/landpg/Service3.png" class="d-block w-100" alt="...">
             </div>
           </div>
         </div>
@@ -161,9 +156,9 @@ include "../landingPage/header.php"
     <div class="row text-center">
       <div class="col-md-4 mb-5 mb-md-0">
         <div class="d-flex justify-content-center mb-4">
-          <img src="ProfileImg/p-1.jpg" class="rounded-circle shadow-1-strong" width="150" height="150" />
+          <img src="assets/images/ProfileImg/per-1.jpg" class="rounded-circle shadow-1-strong profileImg" width="150" height="200" />
         </div>
-        <h5 class="mb-3">Maria Smantha</h5>
+        <h5 class="mb-3">Steve Ross</h5>
         <h6 class="text-primary mb-3">Web Developer</h6>
         <p class="px-xl-3">
           <i class="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur
@@ -190,7 +185,7 @@ include "../landingPage/header.php"
       </div>
       <div class="col-md-4 mb-5 mb-md-0">
         <div class="d-flex justify-content-center mb-4">
-          <img src="ProfileImg/p-2.jpg" class="rounded-circle shadow-1-strong" width="150" height="150" />
+          <img src="assets/images/ProfileImg/p-2.jpg" class="rounded-circle shadow-1-strong profileImg" width="150" height="200" />
         </div>
         <h5 class="mb-3">Lisa Cudrow</h5>
         <h6 class="text-primary mb-3">Graphic Designer</h6>
@@ -218,7 +213,7 @@ include "../landingPage/header.php"
       </div>
       <div class="col-md-4 mb-0">
         <div class="d-flex justify-content-center mb-4">
-          <img src="ProfileImg/p-3.jpg" class="rounded-circle shadow-1-strong" width="150" height="150" />
+          <img src="assets/images/ProfileImg/p-3.jpg" class="rounded-circle shadow-1-strong profileImg" width="150" height="200" />
         </div>
         <h5 class="mb-3">John Smith</h5>
         <h6 class="text-primary mb-3">Marketing Specialist</h6>
@@ -246,4 +241,3 @@ include "../landingPage/header.php"
       </div>
     </div>
   </section>
-</body>

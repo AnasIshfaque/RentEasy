@@ -2,11 +2,16 @@
 body{
     overflow-x: hidden;
 }
+
+button {
+    padding: 10px;
+}
 .formSection{
     border: 2px solid black;
     padding: 25px;
-    background: url("img/home.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(88, 86, 86, 0.5)), url("../assets/images/landpg/land.jpg" );
     background-repeat: no-repeat;
+    aspect-ratio: 16 / 9;
     background-size: 100% 100%;
     color: white;
 }
@@ -56,6 +61,7 @@ body{
     height: 500px;
     width: 87%;
     margin-left: 110px;
+    aspect-ratio: 1 / 1;
 }
 
 .advertise{
@@ -69,5 +75,9 @@ body{
 }
 .service button{
     margin-top:100px;
+}
+
+.profileImg {
+    aspect-ratio: 1/1;
 }
 
