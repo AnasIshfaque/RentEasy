@@ -1,6 +1,6 @@
 <?php
     define( 'HOST', 'localhost' );
-	define( 'DB', 'db0' );
+	define( 'DB', 'renteasy' );
 	define( 'USER', 'root' );
 	define( 'PASS', '' );
 
