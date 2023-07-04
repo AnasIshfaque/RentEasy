@@ -1,6 +1,6 @@
 <!-- Footer -->
 <link rel="stylesheet" href="styles/admin_style.css">
-<footer class="text-center text-lg-start text-white" >
+<footer class="text-center text-lg-start text-white">
   <!-- Section: Social media -->
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <!-- Left -->
@@ -121,3 +121,5 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
+</body>
+</html>
