@@ -16,13 +16,22 @@ span.badge{
     flex: 1;
     padding: 5px;
   }
+
+  footer {
+    background-color: #172155;
+  }
   
-footer,nav{
+  
+nav{
   background-color: #172155;
 }
-span.badge{
-  background-color: F7F1F1;
+span.badge {
+  background-color: #f7f1f1;
 }
+
+/* span.badge{
+  background-color: F7F1F1;
+} */
 
 form.updateForm{
   margin: 1% 20% auto 20%;
@@ -38,6 +47,9 @@ i.fa-circle-check,i.fa-trash{
 i.update_driver,i.add_driver{
   margin-left: 10%;
   margin-right: 15%;
+}
+.footer_section .container{
+  border: 0;
 }
 
 /* a.back{
