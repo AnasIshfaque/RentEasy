@@ -9,6 +9,5 @@ include "../landingPage/header.php"
         <div class="col">
             <img src="../landingPage/img/Service2.png" alt="" srcset="">
         </div>
-        <div class="col"></div>
     </div>
 </body>
