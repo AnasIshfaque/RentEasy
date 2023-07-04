@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../styles/admin_style.css">
 
 <?php
     include('admin_navbar.php');
-    include '../constant.php';
+    include '../config/db_conn.php';
 
 ?>
 <table class="table align-middle mb-0 bg-white">
@@ -61,5 +61,5 @@ while ($info = mysqli_fetch_array($query)) {
 </script>
 
 <?php
-include('admin_footer.php');
+include '../partials/footer.php';
 ?>

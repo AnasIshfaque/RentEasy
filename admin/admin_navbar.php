@@ -19,7 +19,7 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
 ></script>
 <!-- Navbar -->
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../styles/admin_style.css">
 
 
 <nav class="navbar navbar-expand-lg navbar-info  " >
@@ -43,8 +43,8 @@
       <!-- Navbar brand -->
       <a class="navbar-brand mt-2 mt-lg-0" href="#">
         <img
-          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-          height="15"
+          src="../assets/images/landpg/logo.jpg"
+          height="65"
           alt="MDB Logo"
           loading="lazy"
         />
@@ -95,7 +95,7 @@
         >
           <i class="fas fa-bell"></i>
           <?php
-            require_once '../constant.php';
+            require_once '../config/db_conn.php';
             $sql="SELECT COUNT(verified) AS pending_Case FROM driver WHERE verified=0 and ID<>100";
             $query = mysqli_query($conn, $sql);
             $result = mysqli_fetch_assoc($query);
@@ -130,7 +130,7 @@
           aria-expanded="false"
         >
           <img
-            src="admin_profile_pic.png"
+            src="../assets/images/ProfileImg/admin_profile_pic.png"
             class="rounded-circle"
             height="30"
             alt="Black and White Portrait of a Man"

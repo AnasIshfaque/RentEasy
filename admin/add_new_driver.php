@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../styles/admin_style.css">
 <?php
     // include('../admin_navbar.php');
-    include '../constant.php';
+    include '../config/db_conn.php';
 
     $ID=$_GET['ID'];
 
