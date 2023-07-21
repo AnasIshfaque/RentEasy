@@ -121,5 +121,6 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
+<script src="./loginPage/loginModal.js"></script>
 </body>
 </html>
