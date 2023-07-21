@@ -10,9 +10,9 @@
     <!-- Left -->
 
     <!-- Right -->
-    <div>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-facebook-f text-white"></i>
+    <div class="social_link">
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
       </a>
       <a href="" class="me-4 link-secondary">
         <i class="fab fa-twitter text-white"></i>

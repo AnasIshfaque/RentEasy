@@ -1,11 +1,22 @@
+td.rmv_border{
+  border: none;
+}
 .each_person_data{
     border: solid black 2px;
 }
+
 td.first_row_col{
-    padding-top: 25px;
+    /* padding-top: 25px; */
+    /* height: 55px; */
+    padding-top: 9px;
+
 }
 span.badge{
     font-size: 14px;
+}
+
+tr.td{
+  border: none;
 }
 
 .row {
@@ -52,6 +63,9 @@ i.update_driver,i.add_driver{
   border: 0;
 }
 
+.social_link a{
+  text-decoration: none ;
+}
 /* a.back{
 
 } */

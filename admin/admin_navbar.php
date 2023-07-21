@@ -52,7 +52,7 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
         <li class="nav-item">
-          <a class="nav-link text-white" href="admin_reserve_list.php">Reserve List</a>
+          <a class="nav-link text-white" href="admin_reserve_list_using_jquery_and_ajax.php">Reserve List</a>
         </li>
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">Vehicle</a>
@@ -72,7 +72,7 @@
           <a class="nav-link text-white" href="admin_customer.php">Customer</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="admin_driver.php">Driver</a>
+          <a class="nav-link text-white" href="admin_driver_using_ajax_jquery.php">Driver</a>
         </li>
       </ul>
       <!-- Left links -->
@@ -102,14 +102,14 @@
             // $pendingCaseCount = $result['pending_Case'];
 
           ?>
-          <span class="badge rounded-pill badge-notification bg-danger"><?php echo $result['pending_Case']>0 ? $result['pending_Case']>0 :"" ?></span>
+          <span class="badge rounded-pill badge-notification bg-danger"><?php echo $result['pending_Case']>0 ? $result['pending_Case'] :"" ?></span>
         </a>
         <ul
           class="dropdown-menu dropdown-menu-end"
           aria-labelledby="navbarDropdownMenuLink"
         >
           <li>
-            <a class="dropdown-item" href="new_Driver.php">Driver Candidates</a>
+            <a class="dropdown-item" href="new_Driver_using_ajax_jquery.php">Driver Candidates</a>
           </li>
           <!-- <li>
             <a class="dropdown-item" href="#">Another news</a>
