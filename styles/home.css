@@ -1,5 +1,8 @@
 body{
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   
   button {

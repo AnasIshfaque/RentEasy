@@ -1,5 +1,5 @@
 <!-- Footer -->
-<link rel="stylesheet" href="styles/admin_style.css">
+<link rel="stylesheet" href="../styles/admin_style.css">
 <footer class="text-center text-lg-start text-white">
   <!-- Section: Social media -->
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
@@ -10,9 +10,9 @@
     <!-- Left -->
 
     <!-- Right -->
-    <div>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-facebook-f text-white"></i>
+    <div class="social_link">
+      <a href="" class="me-4 text-reset">
+        <i class="fab fa-facebook-f"></i>
       </a>
       <a href="" class="me-4 link-secondary">
         <i class="fab fa-twitter text-white"></i>
