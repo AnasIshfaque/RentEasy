@@ -3,17 +3,17 @@
     color: white;
     font-size: 20px;
     padding-right:10px;
-}
-.nav-item{
+  }
+  .nav-item{
     margin-right:20px;
-}
-.navbar{
+  }
+  .navbar{
     background-color: rgb(23,33,85);
-}
-.logo{
+  }
+  .logo{
     height:100px;
-}
-.User a {
+  }
+  .User a {
     text-decoration: none;
     color: white;
     font-size: 20px;
@@ -22,33 +22,33 @@
     /* background-color: rgba(65, 107, 177, 1); */
     border-radius: 6px;
     padding-left: 13px;
-}
-.User{
+  }
+  .User{
     height: 31px;
     width: 169px;
-}
-.signBtn{
+  }
+  .signBtn{
     background-color: rgb(211, 207, 201);
     border: 0;
     border-radius: 6px;
     color: white;
     
-}
-.signBtn:hover{
+  }
+  .signBtn:hover{
     background-color: rgb(238, 184, 114);
-}
-.logBtn{
+  }
+  .logBtn{
     background-color: rgba(65, 107, 177, 1);
     border: 0;
     border-radius: 6px;
     color: white;
     transition-delay: 50ms;
-}
-.logBtn:hover{
+  }
+  .logBtn:hover{
     background-color: rgb(120, 166, 245);
-}
-
-#modal {
+  }
+  
+  #modal {
     text-align: center;
     padding: 1em;
     width: 400px;
@@ -58,19 +58,17 @@
     & > * {
         margin: 0 0 0.5rem 0;
     }
-}
-
-.model_title{
+  }
+  
+  .model_title{
     display: inline;
-}
-.close-login{
+  }
+  .close-login{
     border: 0;
     float: right;
     background-color: white;
-}
-form {
+  }
+  form {
     display: grid;
     gap: 1em;
   }
-  
-  

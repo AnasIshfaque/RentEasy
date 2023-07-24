@@ -1,5 +1,5 @@
 <!-- Footer -->
-<link rel="stylesheet" href="styles/admin_style.css">
+<link rel="stylesheet" href="../styles/admin_style.css">
 <footer class="text-center text-lg-start text-white">
   <!-- Section: Social media -->
   <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
@@ -121,5 +121,6 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
+<script src="./loginPage/loginModal.js"></script>
 </body>
 </html>

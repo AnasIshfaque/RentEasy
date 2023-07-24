@@ -5,7 +5,7 @@
     include '../config/db_conn.php';
  
 ?>
-    <table class="table align-middle mb-0 bg-white">
+    <!-- <table class="table align-middle mb-0 bg-white">
         <tbody>
             <?php
                 $sql = "select ID,name,DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), dob)), '%Y') + 0 AS age,gmail from customer ";
@@ -47,7 +47,7 @@
             ?>
 
         </tbody>
-    </table> 
+    </table>  -->
 
 <?php
 include '../partials/footer.php';

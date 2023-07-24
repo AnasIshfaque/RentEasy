@@ -1,12 +1,14 @@
-
 body{
-    overflow-x: hidden;
-}
-
-button {
+    /* overflow-x: hidden; */
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  button {
     padding: 10px;
-}
-.formSection{
+  }
+  .formSection{
     border: 2px solid black;
     padding: 25px;
     background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(88, 86, 86, 0.5)), url("../assets/images/landpg/land.jpg" );
@@ -14,70 +16,69 @@ button {
     aspect-ratio: 16 / 9;
     background-size: 100% 100%;
     color: white;
-}
-.container{
+  }
+  .container{
     margin-top:300px;
     margin-bottom:100px;
     text-align: center;
     border: 2px solid gray;
     border-radius:10px;
-}
-.container input{
+  }
+  .container input{
     margin-bottom:20px;
     height: 40px;
     width:200px;
-
-}
-.loaction input{
+  
+  }
+  .loaction input{
     width:500px;
-}
-.container select{
+  }
+  .container select{
     height: 40px;
     width:200px;
-}
-.fRow{
+  }
+  .fRow{
     padding-top: 40px;
     padding-bottom: 20px;
-}
-.form-check-input{
+  }
+  .form-check-input{
     width:5em !important;
     margin-left:15em !important;
     height:2em !important;
-}
-.form-check label{
+  }
+  .form-check label{
     text-align: center;
     padding-top:4px;
     font-size: 1.5em;
-}
-.btn-Select{
+  }
+  .btn-Select{
     width:10em;
     margin-left:35em;
     height: 3em;
     border-radius:5px;
-}
-/* Advertise Section */
-
-.a-img{
+  }
+  /* Advertise Section */
+  
+  .a-img{
     height: 500px;
     width: 87%;
     margin-left: 110px;
     aspect-ratio: 1 / 1;
-}
-
-.advertise{
+  }
+  
+  .advertise{
     text-align: center;
     background-color: rgb(159, 159, 207);
     padding-bottom:20px;
-}
-.service{
+  }
+  .service{
     text-align: center;
     width:100%;
-}
-.service button{
+  }
+  .service button{
     margin-top:100px;
-}
-
-.profileImg {
+  }
+  
+  .profileImg {
     aspect-ratio: 1/1;
-}
-
+  }

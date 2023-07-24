@@ -19,7 +19,7 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
 ></script>
 <!-- Navbar -->
-<link rel="stylesheet" href="../styles/admin_style.css">
+<!-- <link rel="stylesheet" href="../styles/admin_style.css"> -->
 
 
 <nav class="navbar navbar-expand-lg navbar-info  " >
