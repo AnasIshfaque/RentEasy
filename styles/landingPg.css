@@ -16,7 +16,8 @@
 
 .heroContent > h1 {
   font-size: 3em;
-  font-weight: 600; 
+  font-weight: 600;
+  text-align: center;
 }
 
 .heroContent > h1 > span {

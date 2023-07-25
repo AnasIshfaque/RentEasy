@@ -76,13 +76,40 @@ nav > ul {
 }
 
 /* login css */
-.modal {
-    height: 300px;
-    width: 400px;
-    background-color: #ec0f0f;
+.login_modal {
+    background-color: #fff;
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    padding: 2em 2.5em;
 }
 
-.close_Modal {
-
+.close_modal {
+    border: 0;
+    background-color: #fff;
+    margin-left: 90%;
 }
-  
+
+.login_modal > h2 {
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+.login_modal > form {
+    display: flex;
+    flex-direction: column;
+    gap: .1em;
+}
+
+.modal_login_btn {
+    margin-top: 1em;
+    border: 0;
+    border-radius: 10px;
+    padding: .5em 1em;
+    background-color: #78A6F5;
+    color: #fff;
+}
+
+.modal_login_btn:hover {
+    background-color: #5590f7;
+}
