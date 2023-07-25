@@ -61,7 +61,7 @@
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">Vehicle</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>
-                <a class="dropdown-item text-black" href="#">Car</a>
+                <a class="dropdown-item text-black" href="admin_car.php">Car</a>
               </li>
               <li>
                 <a class="dropdown-item text-black" href="#">Truck</a>
