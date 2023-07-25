@@ -1,0 +1,30 @@
+.signupSection>form {
+    display: flex;
+    gap: 3em;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 3em;
+    margin: 1em;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.profileImg {
+    
+}
+
+.signupInfo {
+    padding: 0 2em;
+    border-left: 1px solid #333;
+}
+.signupInfo> * {
+    margin: .3em .5em;
+}
+
+.finalsignupBtn {
+    margin-top: 1.5em;
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+}
