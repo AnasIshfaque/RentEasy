@@ -2,7 +2,7 @@
 
 include '../config/db_conn.php';
 
-$sql = "SELECT ID, name, mobile,DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), dob)), '%Y') + 0 AS age,license FROM driver WHERE ID <> 100 AND verified <> 1";
+$sql = "SELECT driver_info.ID, user.name, mobile,DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), user.dob)), '%Y') + 0 AS age,license FROM driver_info INNER JOIN user ON user.ID=driver_info.ID WHERE driver_info.ID <> 100 AND verified <> 1";
 $query_run = mysqli_query($conn, $sql);
 $result_array = [];
 
