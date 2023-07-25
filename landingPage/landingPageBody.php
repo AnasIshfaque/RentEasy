@@ -1,5 +1,7 @@
-
 <div class="hero">
+    <?php
+    include_once '../loginPage/loginModal.php';
+    ?>
     <div class="heroContent">
         <h1>Renting made <span>Easy!</span></h1>
         <p>Find the best rental deals closest to you in no time with our simple renting steps.</p>

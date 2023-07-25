@@ -49,7 +49,6 @@ nav > ul {
 
 .navBtns > *{
     margin: .3em;
-    padding: .5em 1em;
     border-radius: 5px;
     border: 0;
     color: #fff;
@@ -59,6 +58,7 @@ nav > ul {
 
 .loginBtn {
     background-color: #78A6F5;
+    padding: .35em 1em;
 }
 
 .loginBtn:hover {
@@ -67,9 +67,22 @@ nav > ul {
 
 .signupBtn {
     background-color: #F7BE43;
+    padding: .5em 1em;
 }
 
 .signupBtn:hover {
     background-color: #cea00a;
     color: #fff;
 }
+
+/* login css */
+.modal {
+    height: 300px;
+    width: 400px;
+    background-color: #ec0f0f;
+}
+
+.close_Modal {
+
+}
+  
