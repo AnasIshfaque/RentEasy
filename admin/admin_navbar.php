@@ -96,14 +96,8 @@
           data-mdb-toggle="dropdown"
           aria-expanded="false"
         >
-          <i class="fas fa-bell"></i>
-          <?php
-            require_once '../config/db_conn.php';
-            $sql="SELECT COUNT(verified) AS pending_Case FROM driver_info WHERE verified=0 and ID<>100";
-            $query = mysqli_query($conn, $sql);
-            $result = mysqli_fetch_assoc($query);
-          ?>
-          <span class="badge rounded-pill badge-notification bg-danger"><?php echo $result['pending_Case']>0 ? $result['pending_Case'] :"" ?></span>
+          <i class="fas fa-bell" ></i>
+          <span class="badge rounded-pill badge-notification bg-danger" id="noti_number"></span>
         </a>
         <ul
           class="dropdown-menu dropdown-menu-end"
@@ -153,3 +147,31 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+
+
+<script type="text/javascript">
+ function loadDoc() {
+  
+
+  setInterval(function(){
+
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      if(this.responseText > 0){
+     document.getElementById("noti_number").innerHTML = this.responseText;
+    }
+    else{
+      document.getElementById("noti_number").innerHTML = "";
+    }
+  }
+   };
+   xhttp.open("GET", "update_notification_count.php", true);
+   xhttp.send();
+
+  },250);
+
+
+ }
+ loadDoc();
+</script>
