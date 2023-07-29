@@ -20,15 +20,45 @@
     <nav>
       <img src="../assets/images/landpg/logo.jpg" alt="renteasy logo" class="logoImg">
       <ul>
-        <li><a class="nav_links" href="../landingPage/index.php">Home</a></li>
-        <li><a class="nav_links" href="vehicle.php">Vehicle</a></li>
-        <li><a class="nav_links" href="services.php">Our Service</a></li>
-      </ul>
+      <?php
+          if(!isset($_SESSION)) 
+          { 
+              session_start(); 
+          } 
+          if (isset($_SESSION['name'])) {
+            //type_id = 1 -> customer
+            if ($_SESSION['type_id'] == 1) {
+              echo '<li><a class="nav_links" href="../landingPage/index.php">Home</a></li>';
+              echo '<li><a class="nav_links" href="vehicle.php">Rent History</a></li>';
+              echo '<li><a class="nav_links" href="services.php">Emergency service</a></li></ul>';
 
-      <div class="navBtns">
-        <button class="loginBtn">Login</button>
-        <a class="signupBtn" href="../SignupPage/signup_option.php">Signup</a>
-      </div>
+            }
+            //type_id = 2 -> driver 
+            else if ($_SESSION['type_id'] == 2) {
+              echo '<li><a class="nav_links" href="../landingPage/index.php">Home</a></li>';
+              echo '<li><a class="nav_links" href="vehicle.php">Wallet</a></li>';
+              echo '<li><a class="nav_links" href="services.php">Achivements</a></li></ul>'; 
+
+            }
+            //type_id = 3 -> admin 
+            else if ($_SESSION['type_id'] == 3) {
+              include "admin_nav_links.php";
+            }
+            echo '<div class="navBtns">';
+              echo '<a href="../partials/logout.php" class="logoutBtn">Log out</a>';
+            echo '</div>';
+          }
+          else {
+            echo '<li><a class="nav_links" href="../landingPage/index.php">Home</a></li>';
+            echo '<li><a class="nav_links" href="vehicle.php">Vehicle</a></li>';
+            echo '<li><a class="nav_links" href="services.php">Our Service</a></li></ul>';
+            echo '<div class="navBtns">';
+              echo '<button class="loginBtn">Login</button>';
+              echo '<a class="signupBtn" href="../SignupPage/signup_option.php">Signup</a>';
+            echo '</div>';
+          }
+      ?>
+      
     </nav>
     
   </header>
