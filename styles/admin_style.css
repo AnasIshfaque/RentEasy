@@ -85,13 +85,16 @@ i.update_driver,i.add_driver{
 .recent_transaction{
   background-color: #F7F1F1;
   box-shadow: 2px 2px 5px;
-  height: 440px;
+  height: 460px;
 }
-.recent_vehicle_data{
-  width: 55%;
+/* .recent_vehicle_data{ */
+  /* width: 50%; */
   /* height: 100px; */
-}
+/* } */
 .header_recent_data{
+  margin: 1% 8%;
+}
+.header_recent_data1{
   margin: 1% 3%;
 }
 .recent_vehicle_td{
@@ -159,4 +162,7 @@ i.update_driver,i.add_driver{
 }
 /* .card{
   box-shadow: 2px 2px 5px;
+} */
+/* tr>.Recent_Transaction_th{
+  padding: 0px;
 } */

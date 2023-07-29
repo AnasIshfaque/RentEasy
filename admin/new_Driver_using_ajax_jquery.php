@@ -59,9 +59,26 @@ include '../partials/footer.php';
                         console.log(response);
                         jQuery('#tr_'+candidate_id).hide(500);
                         jQuery('#second_tr_'+candidate_id).hide(500);
+                        updateNotificationCount();
                     }
                 });
             });
+
+            function updateNotificationCount() {
+        // Fetch the updated notification count from the server
+                $.ajax({
+                    type: "GET",
+                    url: "update_notification_count.php",
+                    dataType: 'json',
+                    success: function (pendingCases) {
+                // Update the notification badge value in the navbar.php file
+                        $('.badge-notification', window.parent.document).text(pendingCases > 0 ? pendingCases : "");
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error updating notification count:", error);
+                    }
+                });
+            }
         });
 
         function getdata()
