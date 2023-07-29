@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $name = $password = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = test_input($_POST["name"]);
@@ -18,18 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['dob'] = $row['dob'];
             $_SESSION['password'] = $row['password'];
             $_SESSION['type_id'] = $row['type_id'];
-            include "../partials/header.php";
-
-            if(!isset($_SESSION)) 
-            { 
-                session_start(); 
-            } 
+ 
             if ($_SESSION['type_id'] == 1) {
-                include "../customer/homePage.php";
+                header ('Location:../customer/homePage.php');
             } else if ($_SESSION['type_id'] == 2) {
-                include "../driver/homePage.php";
+                header ('Location:../driver/homePage.php');
             } else if ($_SESSION['type_id'] == 3) {
-                include "../admin/adminHome.php";
+                header ('Location:../admin/admin_dashboard.php');
             }
 
         } else {
@@ -40,13 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-
-include '../partials/footer.php';
-
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
+
 ?>

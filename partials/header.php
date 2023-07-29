@@ -20,11 +20,8 @@
     <nav>
       <img src="../assets/images/landpg/logo.jpg" alt="renteasy logo" class="logoImg">
       <ul>
-      <?php
-          if(!isset($_SESSION)) 
-          { 
-              session_start(); 
-          } 
+      <?php 
+          session_start(); 
           if (isset($_SESSION['name'])) {
             //type_id = 1 -> customer
             if ($_SESSION['type_id'] == 1) {
@@ -41,9 +38,9 @@
 
             }
             //type_id = 3 -> admin 
-            else if ($_SESSION['type_id'] == 3) {
-              include "admin_nav_links.php";
-            }
+            // else if ($_SESSION['type_id'] == 3) {
+            //   include "admin_nav_links.php";
+            // }
             echo '<div class="navBtns">';
               echo '<a href="../partials/logout.php" class="logoutBtn">Log out</a>';
             echo '</div>';
