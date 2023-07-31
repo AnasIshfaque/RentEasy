@@ -13,6 +13,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
   rel="stylesheet"
 />
+<link rel="stylesheet" href="../styles/header.css">
 <!-- MDB -->
 <script
   type="text/javascript"
@@ -108,6 +109,9 @@
           </li>
         </ul>
       </div>
+
+      <a href="../partials/logout.php" class="logoutBtn">Log out</a>
+
     </div>
     <!-- Right elements -->
   </div>

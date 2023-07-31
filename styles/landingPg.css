@@ -16,7 +16,8 @@
 
 .heroContent > h1 {
   font-size: 3em;
-  font-weight: 600; 
+  font-weight: 600;
+  text-align: center;
 }
 
 .heroContent > h1 > span {
@@ -43,6 +44,124 @@
   text-decoration: none;
 }
 
+.searchArea {
+  background-image: url("../assets/images/landpg/smallherocar.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+}
+
+.rentSearchBox {
+  /* margin: 3em 12em; */
+  padding: 2em 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  background-color: #fff;
+  border-radius: 10px;
+  gap: 3em;
+  opacity: 0.9;
+  width: 80%;
+}
+
+.location {
+  padding: 0 2em;
+  border-right: .5px solid gray;
+  align-self: center;
+  flex-basis: content;
+}
+
+.location > button {
+  border: 0;
+}
+.pickupDate {
+  padding: 0 2em;
+  padding-right: 3em;
+  border-right: .5px solid gray;
+  align-content: center;
+}
+
+.searchBtn {
+  padding: .5em 1em;
+  border-radius: 5px;
+  border: 0;
+  color: #fff;
+  font-size: large;
+  background-color: #78A6F5;
+  text-decoration: none;
+  opacity: 1;
+}
+
+.searchBtn:hover {
+  background-color: #4f46e4;
+}
+
+.brandLogos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10em 1em;
+  gap: 2em;
+}
+
+.brandLogos > img {
+  width: 4em;
+  object-fit: contain;
+}
+
+.work_title {
+  text-align: center;
+}
+
+.rentSteps {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+  gap: 1em;
+  padding: 3em 0;
+}
+
+.rentSteps > h1 {
+  text-align: center;
+}
+
+.rentSteps > hr {
+  border-top:1px dotted #000;
+}
+
+.step {
+  width: 30ch;
+}
+
+.step > div {
+  width: 7em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step > * {
+  text-align: center;
+}
+.step1box {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  padding: 2em;
+}
+
+.step2box {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  background-color: #78A6F5;
+  padding: 2em;
+}
+
+.step3box {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
+  padding: 2em;
+}
 /* signup css*/
 
 .signupSection {
