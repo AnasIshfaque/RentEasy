@@ -143,8 +143,9 @@ i.update_driver,i.add_driver{
 }
 .car_content{
   display: flex;
-  margin: 1% 3%;
+  margin: 1% 5%;
   justify-content: space-between;
+  flex-wrap: wrap; 
 }
 .car_info{
   display: flex;
@@ -160,9 +161,25 @@ i.update_driver,i.add_driver{
 .car_detail_info{
   margin-right: 10%;
 }
-/* .card{
-  box-shadow: 2px 2px 5px;
-} */
+.card{
+  margin-bottom: 2%;
+}
 /* tr>.Recent_Transaction_th{
   padding: 0px;
 } */
+/* #admin_search_bar{
+  margin-top: 1%;
+  margin-left: 2%;
+  margin-right: ;
+} */
+.admin_editpage_header{
+  display: flex;
+  justify-content: space-between;
+  margin: 1% 3%;
+}
+.image_input{
+  margin-top: 3%
+}
+.car_data{
+  display: flex;
+}

@@ -30,17 +30,27 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-light"><i class="fa-solid fa-id-badge"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="edit_id" readonly>
+                    <input type="text" class="form-control" id="edit_ID" readonly>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Name:</label>
+                <label>Model: </label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-light"><i class="fa-solid fa-car"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="edit_name">
+                    <input type="text" class="form-control" id="edit_model">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Car Number: </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light"><i class="fa-solid fa-car"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="edit_number">
                 </div>
             </div>
 
@@ -50,7 +60,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-light"><i class="fa-solid fa-gas-pump"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="edit_dob">
+                    <input type="text" class="form-control" id="edit_fuel">
                 </div>
             </div>
 
@@ -60,7 +70,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-light"><i class="fa-solid fa-gear"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="edit_mobile">
+                    <input type="text" class="form-control" id="edit_gear">
                 </div>
             </div>
 
@@ -70,135 +80,376 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-light"><i class="fa-solid fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" id="edit_license">
+                    <input type="text" class="form-control" id="edit_passenger">
                 </div>
             </div>
+            <img id="selected_image_preview" src="" alt="Selected Image" style="max-width: 100%; max-height: 200px;">
 
+            <form id="car_update_form" enctype="multipart/form-data" method="post">
+                <input type="file" id="edit_img" name="my_image" class="image_input" accept="image/png, image/jpeg">
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary Driver_update_ajax">Update</button>
+        <button type="submit" class="btn btn-primary car_update_ajax" name="update">Update</button>
       </div>
+      </form>
+
+
     </div>
   </div>
 </div>
 
 
+<!-- Add Car Modal -->
+<div class="modal fade" id="AddCarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Car</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add form fields to input new car details here -->
+                <!-- Example: -->
+                <div class="form-group">
+                    <label>Model: </label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-car"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="new_model">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Car Number: </label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light"><i class="fa-solid fa-car"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="new_number">
+                    </div>
+                </div>
+                
+            <div class="form-group">
+                <label>Fuel Capacity:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light"><i class="fa-solid fa-gas-pump"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="new_fuel">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Transmission:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light"><i class="fa-solid fa-gear"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="new_gear">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Passenger:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-light"><i class="fa-solid fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="new_passenger">
+                </div>
+            </div>
+            <img id="selected_new_image_preview" src="" alt="Selected Image" style="max-width: 100%; max-height: 200px;">
 
 
-<div class="car_content">
-    <div class="card" style="width: 22rem;">
-        <img src="../assets/images/car_images/Honda_CR-V.png" class="card-img-top" alt="Honda CR-V">
-        <div class="card-body">
-            <h5 class="card-title">Honda CR-V</h5>
-            <div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">70L</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">Auto</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>4</p></div>
-            <a href="#" class="btn btn-primary specific_vehicle" >Edit</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 22rem;">
-        <img src="../assets/images/car_images/Axio.png" class="card-img-top" alt="Toyota Axio">
-        <div class="card-body">
-            <h5 class="card-title">Toyota Axio</h5>
-            <div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">70L</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">Auto</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>4</p></div>
-            <a href="#" class="btn btn-primary specific_vehicle">Edit</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 22rem;">
-        <img src="../assets/images/car_images/Premio.png" class="card-img-top" alt="Toyota Premio">
-        <div class="card-body">
-            <h5 class="card-title">Toyota Premio</h5>
-            <div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">70L</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">Auto</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>4</p></div>
-            <a href="#" class="btn btn-primary specific_vehicle">Edit</a>
-        </div>
-    </div>
-</div>
-
-<div class="car_content">
-    <div class="card" style="width: 22rem;">
-        <img src="../assets/images/car_images/land_cruiser.png" class="card-img-top" alt="Toyota Land-Cruiser">
-        <div class="card-body">
-            <h5 class="card-title">Toyota Land-Cruiser</h5>
-            <div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">70L</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">Auto</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>4</p></div>
-            <a href="#" class="btn btn-primary specific_vehicle">Edit</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 22rem;">
-        <img src="../assets/images/car_images/aqua.png" class="card-img-top" alt="Toyota Aqua">
-        <div class="card-body">
-            <h5 class="card-title">Toyota Aqua</h5>
-            <div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">70L</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">Auto</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>4</p></div>
-            <a href="#" class="btn btn-primary specific_vehicle">Edit</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 22rem;">
-        <img src="../assets/images/car_images/hiace.png" class="card-img-top" alt="Toyota Hiace">
-        <div class="card-body">
-            <h5 class="card-title">Toyota Hiace</h5>
-            <div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">70L</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">Auto</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>4</p></div>
-            <a href="#" class="btn btn-primary specific_vehicle">Edit</a>
-        </div>
-    </div>
-</div>
-
-<div class="car_content">
-    <div class="card" style="width: 22rem;">
-        <img src="../assets/images/car_images/honda_civic.png" class="card-img-top" alt="Honda Civic">
-        <div class="card-body">
-            <h5 class="card-title">Honda Civic</h5>
-            <div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">70L</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">Auto</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>4</p></div>
-            <a href="#" class="btn btn-primary specific_vehicle">Edit</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 22rem;">
-        <img src="../assets/images/car_images/mg.png" class="card-img-top" alt="MG ZS">
-        <div class="card-body">
-            <h5 class="card-title">MG ZS</h5>
-            <div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">70L</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">Auto</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>4</p></div>
-            <a href="#" class="btn btn-primary specific_vehicle">Edit</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 22rem;">
-        <img src="../assets/images/car_images/hundai_sonata.png" class="card-img-top" alt="Hyundai Sonata">
-        <div class="card-body">
-            <h5 class="card-title">Hyundai Sonata</h5>
-            <div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">70L</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">Auto</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>4</p></div>
-            <a href="#" class="btn btn-primary specific_vehicle">Edit</a>
+                <!-- Add input field for the new car image -->
+                <div class="form-group">
+                    <label>Car Image:</label>
+                    <input type="file" id="new_img" name="my_image" class="image_input" accept="image/png, image/jpeg">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="addCarBtn">Add Car</button>
+            </div>
         </div>
     </div>
 </div>
 
+<div class="admin_editpage_header">
+    <input class="admin_serach form-control me-2 " type="search" placeholder="Search" aria-label="Search" autocomplete="off" id="live_search" style="width:82rem;" >
+    <button type="button" class="btn btn-outline-primary add_new_Car" style="height: fit-content;" >Add New</button>
+
+</div>
+<div class="message-show">
+
+</div>
+
+<div class="car_content">
+
+</div>
 
 <?php
 include '../partials/footer.php';
 ?>
 
-<script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <script>
     $(document).ready(function () {
-        $(document).on("click", ".specific_vehicle", function () {
-            // var candidate_id = $(this).data('candidate-id');
-            // $.ajax({
-            //         type: "POST",
-            //         url: "code.php",
-            //         data: {
-            //             'checking_driver_edit': true,
-            //             'candidate_id': candidate_id,
-            //         },
-            //         success: function (response) {
-            //             $('#DriverEditModal').modal('show');
-            //         }
-            //     });
-            $('#CarEditModal').modal('show');
+        getdata();
 
+        $("#live_search").keyup(function () {
+        var input = $(this).val();
+        if (input != "") {
+            $.ajax({
+                url: "livesearch.php",
+                method: "POST",
+                data: {
+                    input: input
+                },
+                success: function (response) {
+                    $('.car_content').empty(); // Clear existing content
+
+                    if (response.length > 0) {
+                        $.each(response, function (key, value) {
+                            var htmlString =
+                                '<div class="card" style="width: 22rem; ">' +
+                                '<img src="uploads/' + value['image'] + '" class="card-img-top" alt="Honda CR-V">' +
+                                '<div class="card-body">' +
+                                '<h5 class="card-title">' + value['model'] + '</h5>' +
+                                '<div class="car_data">' +
+                                '<label for="">Car Number: </label>' +
+                                '<h6 class="card-title" style="padding: 1%;">' + value['number'] + '</h6>' +
+                                '</div>' +
+                                '<div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">' + value['fuel'] + '</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">' + value['gear'] + '</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>' + value['passenger'] + '</p></div>' +
+                                '<a href="#" class="btn btn-primary specific_vehicle" data-candidate-id=' + value['ID'] + '>Edit</a>' +
+                                '</div></div>';
+
+                            $('.car_content').append(htmlString);
+                        });
+                    } else {
+                        $('.car_content').html("<h4>No Record Found</h4>");
+                    }
+                }
+            });
+        } else {
+            $('.car_content').empty(); // Clear existing content
+            getdata(); // Display all cars if the search input is empty
+        }
+    });
+
+    // ... Existing code ...
+    $(".add_new_Car").click(function () {
+        $("#AddCarModal").modal("show");
+
+    });
+
+    $('#new_img').change(function() {
+    // Get the selected file from the input element
+        var file = this.files[0];
+
+        // If a file is selected, update the image preview
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#selected_new_image_preview').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // If no file is selected, clear the image preview
+            $('#selected_new_image_preview').attr('src', '');
+        }
+    });
+
+    $('#AddCarModal').on('hidden.bs.modal', function () {
+        $('#selected_new_image_preview').attr('src', '');
+        var newFileInput = $("<input>").attr({
+            type: "file",
+            id: "new_img",
+            name: "my_image",
+            class: "image_input",
+            accept: "image/png, image/jpeg"
+        });
+
+        // Replace the old input element with the new one
+        $('#new_img').replaceWith(newFileInput);
+
+    });
+
+    // Handle "Add Car" button click
+    $("#addCarBtn").click(function (e) {
+
+        e.preventDefault();
+
+        // Get the selected file from the input element
+        var fileInput = document.getElementById('new_img');
+        var file = fileInput.files[0];
+
+        // Create a new FormData object
+        var formData = new FormData();
+
+        // Append the file to the FormData object
+        formData.append('my_image', file);
+
+        // Add other form data to the FormData object if needed
+        formData.append('checcking_new_Car', true);
+        // formData.append('new_car_number', $('#edit_ID').val());
+        formData.append('new_car_model', $('#new_model').val());
+        formData.append('new_car_reg_num', $('#new_number').val());
+        formData.append('new_car_fuel', $('#new_fuel').val());
+        formData.append('new_car_gear', $('#new_gear').val());
+        formData.append('new_car_passenger', $('#new_passenger').val());
+
+        $.ajax({
+            type: 'POST',
+            url: 'code.php',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                // Handle the server response here
+                console.log('Success:', response);
+                $("#new_model").val("");
+                $("#new_number").val("");
+                // $("#new_img").empty();
+                $('#new_fuel').val("");
+                // $('#selected_new_image_preview').attr('src', '');
+                // $('selected_new_image_preview').empty();
+                $('#new_gear').val("");
+                $('#new_passenger').val("");
+                $('#AddCarModal').modal('hide');
+                $('.car_content').empty(); // Clear existing content
+
+                getdata(); // Display all cars if the search input is empty
+
+            },
+            error: function (xhr, status, error) {
+                // Handle the error if any
+                console.log('Error:', error);
+            }
         });
     });
+
+
+
+        $(document).on("click", ".specific_vehicle", function () {
+            var candidate_id = $(this).data('candidate-id');
+            $.ajax({
+                    type: "POST",
+                    url: "code.php",
+                    data: {
+                        'checking_car_edit': true,
+                        'candidate_id': candidate_id,
+                    },
+                    success: function (response) {
+                        $.each(response, function (key, editCar) { 
+                            // console.log(studview['fname']);
+                            $('#edit_ID').val(editCar['ID']);
+                            $('#edit_model').val(editCar['model']);
+                            $('#edit_number').val(editCar['number']);
+                            $('#edit_fuel').val(editCar['fuel']);
+                            $('#edit_gear').val(editCar['gear']);
+                            $('#edit_passenger').val(editCar['passenger']);
+                            $('#edit_img').change(function() {
+                                // Get the selected file from the input element
+                                var file = this.files[0];
+
+                                // If a file is selected, update the image preview
+                                if (file) {
+                                    var reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        $('#selected_image_preview').attr('src', e.target.result);
+                                    };
+                                    reader.readAsDataURL(file);
+                                } else {
+                                    // If no file is selected, clear the image preview
+                                    $('#selected_image_preview').attr('src', '');
+                                }
+                            });
+                            $('#selected_image_preview').attr('src', 'uploads/' + editCar['image']);
+                        });
+                        $('#CarEditModal').modal('show');
+
+                    }
+                });
+        });
+
+    $('.car_update_ajax').click(function (e) {
+        e.preventDefault();
+
+        // Get the selected file from the input element
+        var fileInput = document.getElementById('edit_img');
+        var file = fileInput.files[0];
+
+        // Create a new FormData object
+        var formData = new FormData();
+
+        // Append the file to the FormData object
+        formData.append('my_image', file);
+
+        // Add other form data to the FormData object if needed
+        formData.append('checking_car_update', true);
+        formData.append('edit_car_number', $('#edit_ID').val());
+        formData.append('edit_car_model', $('#edit_model').val());
+        formData.append('edit_car_reg_num', $('#edit_number').val());
+        formData.append('edit_car_fuel', $('#edit_fuel').val());
+        formData.append('edit_car_gear', $('#edit_gear').val());
+        formData.append('edit_car_passenger', $('#edit_passenger').val());
+
+        // Send the AJAX request to the server
+        $.ajax({
+            type: 'POST',
+            url: 'code.php',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                // Handle the server response here
+                console.log('Success:', response);
+                $('#CarEditModal').modal('hide');
+                // location.reload();
+                $('.car_content').empty(); // Clear existing content
+
+                getdata(); // Display all cars if the search input is empty
+
+            },
+            error: function (xhr, status, error) {
+                // Handle the error if any
+                console.log('Error:', error);
+            }
+        });
+    });
+
+    }
+    );
+
+    function getdata()
+        {
+            $.ajax({
+                type: "GET",
+                url: "fetch_car.php",
+                success: function (response) {
+                    $.each(response, function (key, value) { 
+                        var htmlString =
+                        '<div class="card" style="width: 22rem; ">' +
+                        '<img src="uploads/' + value['image'] + '" class="card-img-top" alt="Honda CR-V">' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title">' + value['model'] + '</h5>' +
+                        '<div class="car_data">' +
+                        '<label for="">Car Number: </label>' +
+                        '<h6 class="card-title" style="padding: 1%;">' + value['number'] + '</h6>' +
+                        '</div>' +
+                        '<div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">' + value['fuel'] + '</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">' + value['gear'] + '</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>' + value['passenger'] + '</p></div>' +
+                        '<a href="#" class="btn btn-primary specific_vehicle" data-candidate-id=' + value['ID'] + '>Edit</a>' +
+                        '</div></div>';
+
+                        $('.car_content').append(htmlString);
+                    });
+                }
+            });
+        }
 
 </script>

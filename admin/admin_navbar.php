@@ -108,39 +108,6 @@
           </li>
         </ul>
       </div>
-      <!-- Avatar -->
-      <div class="dropdown">
-        <a
-          class="dropdown-toggle d-flex align-items-center hidden-arrow"
-          href="#"
-          id="navbarDropdownMenuAvatar"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="../assets/images/ProfileImg/admin_profile_pic.png"
-            class="rounded-circle"
-            height="30"
-            alt="Black and White Portrait of a Man"
-            loading="lazy"
-          />
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuAvatar"
-        >
-          <li>
-            <a class="dropdown-item text-black" href="#">My profile</a>
-          </li>
-          <li>
-            <a class="dropdown-item text-black" href="#">Settings</a>
-          </li>
-          <li>
-            <a class="dropdown-item text-black" href="#">Logout</a>
-          </li>
-        </ul>
-      </div>
     </div>
     <!-- Right elements -->
   </div>
