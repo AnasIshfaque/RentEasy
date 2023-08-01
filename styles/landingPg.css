@@ -110,6 +110,7 @@
 .brandLogos > img {
   width: 4em;
   object-fit: contain;
+  background-color: transparent;
 }
 
 .work_title {

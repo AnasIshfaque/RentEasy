@@ -34,9 +34,9 @@ include '../loginPage/loginModal.php';
 <div class="brandLogos">
     <img src="../assets/images/brandlogos/mazda.png" alt="mazda">
     <img src="../assets/images/brandlogos/audi.png" alt="audi">
-    <img src="../assets/images/brandlogos/volkswagen.png" alt="">
+    <img src="../assets/images/brandlogos/volkswagen-new.png" alt="">
     <img src="../assets/images/brandlogos/bmw.png" alt="bmw">
-    <img src="../assets/images/brandlogos/mercedes.jpg" alt="mercedes">
+    <img src="../assets/images/brandlogos/mercedes-new.png" alt="mercedes">
     <img src="../assets/images/brandlogos/ford.jpg" alt="ford">
     <img src="../assets/images/brandlogos/nissan.jpg" alt="nissan">
 </div>

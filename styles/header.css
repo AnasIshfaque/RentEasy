@@ -27,6 +27,7 @@ nav {
     align-items: center;
     background-color: rgba(23, 33, 85, 1);
     padding: .5em 2em;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
 
 .nav_links {
