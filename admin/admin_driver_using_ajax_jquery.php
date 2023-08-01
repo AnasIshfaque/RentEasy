@@ -82,6 +82,10 @@
   </div>
 </div>
 
+<div class="admin_editpage_header">
+    <input class="admin_serach form-control me-2 " type="search" placeholder="Search" aria-label="Search" autocomplete="off" id="live_search_Driver" style="width: 95%;" >
+</div>
+
 <table class="table align-middle mb-0 bg-white">
     <div class="message-show">
 
@@ -101,6 +105,66 @@ include '../partials/footer.php';
     <script>
         $(document).ready(function () {
             getdata();
+
+            
+        $("#live_search_Driver").keyup(function () {
+        var input = $(this).val();
+        if (input != "") {
+            $.ajax({
+                url: "livesearchdriver.php",
+                method: "POST",
+                data: {
+                    input: input
+                },
+                success: function (response) {
+                    $('.content').empty(); // Clear existing content
+
+                    if (response.length > 0) {
+                        $.each(response, function (key, value) { 
+                        var htmlString =
+                        '<tr class="each_person_data">'+
+                        '<tr class="rent_data" id="tr_'+value['ID']+'">'+
+                            '<td class="first_row_col rmv_border">\
+                                <span class="text-muted mb-1">Driver ID:</span>\
+                                <span class="badge rounded text-black d-inline ms-1">'+value['ID']+'</span>\
+                            </td>\
+                            <td class="rmv_border">\
+                                <span class="text-muted mb-0 ">Age:</span>\
+                                <span class="badge  rounded text-black d-inline ms-1">'+value['age']+'</span>\
+                            </td>\
+                            <td class="rmv_border">\
+                                <span class="text-muted mb-0 ">Mobile:</span>\
+                                <span class="badge  rounded text-black d-inline ms-1">'+value['mobile']+'</span>\
+                            </td>\
+                        </tr>\
+                        <tr id="second_tr_'+value['ID']+'">'+
+                            '<td class="first_row_col rmv_border">\
+                                <span class="text-muted mb-1">Driver Name:</span>\
+                                <span class="badge text-black  rounded">'+value['name']+'</span>\
+                            </td>\
+                            <td class="rmv_border">\
+                                <span class="text-muted mb-0 ">Driving License:</span>\
+                                <span class="badge  rounded text-black d-inline ms-3">'+value['license']+'</span>\
+                            </td>\
+                            <td class="rmv_border last_row_'+value['ID']+'">';
+                                htmlString +='<a href="#" class="editDriverbtn" title="Edit" data-candidate-id="'+value['ID']+'"><i class="fas fa-edit text-info update_driver"></i></a>\
+                                <a href="#"  class="deleteDriver" title="Delete" data-candidate-id="'+value['ID']+'"><i class="fas fa-trash-alt text-danger"></i></a>';
+                        htmlString += '</td>\
+                        </tr>\
+                        </tr>';
+
+                        $('.content').append(htmlString);
+                    });
+                    } else {
+                        $('.content').html("<h4>No Record Found</h4>");
+                    }
+                }
+            });
+        } else {
+            $('.content').empty(); // Clear existing content
+            getdata(); // Display all cars if the search input is empty
+        }
+    });
 
             $('.Driver_update_ajax').click(function (e) { 
                 e.preventDefault();
@@ -129,6 +193,7 @@ include '../partials/footer.php';
                         success: function (response) {
                             // console.log(response);
                             $('#DriverEditModal').modal('hide');
+                            $("#live_search_Driver").val(""); 
                             // console.log(response);
                             $('.message-show').append('\
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">\
