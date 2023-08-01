@@ -49,11 +49,13 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
+  background-blend-mode: lighten;
 }
 
 .rentSearchBox {
-  /* margin: 3em 12em; */
-  padding: 2em 1em;
+  margin: 0 4em;
+  margin-top: 22em;
+  padding: 2em 1.7em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,12 +63,12 @@
   background-color: #fff;
   border-radius: 10px;
   gap: 3em;
-  opacity: 0.9;
-  width: 80%;
+  /* opacity: 0.9; */
+  width: 90%;
 }
 
 .location {
-  padding: 0 2em;
+  padding-right: .5em;
   border-right: .5px solid gray;
   align-self: center;
   flex-basis: content;
@@ -74,12 +76,11 @@
 
 .location > button {
   border: 0;
+  background-color: transparent;
 }
 .pickupDate {
-  padding: 0 2em;
   padding-right: 3em;
   border-right: .5px solid gray;
-  align-content: center;
 }
 
 .searchBtn {
