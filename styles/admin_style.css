@@ -12,8 +12,7 @@ td.rmv_border{
 }
 
 td.first_row_col{
-    /* padding-top: 25px; */
-    /* height: 55px; */
+
     padding-top: 9px;
 
 }
@@ -27,19 +26,16 @@ tr.td{
 
 .row {
     display: flex;
-  }
+}
   
-  .cell {
-    flex: 1;
-    padding: 5px;
-  }
-
-  footer {
-    background-color: #172155;
-    margin-top: auto;
-  }
-  
-  
+.cell {
+  flex: 1;
+  padding: 5px;
+}
+footer {
+  background-color: #172155;
+  margin-top: auto;
+}
 nav{
   background-color: #172155;
 }
@@ -76,26 +72,21 @@ i.update_driver,i.add_driver{
 .transaction_pieChart{
   display: flex;
   flex-direction: column;
-  /* background-color: red; */
 }
 .head_of_transaction_table{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .recent_transaction{
   background-color: #F7F1F1;
   box-shadow: 2px 2px 5px;
   height: 460px;
 }
-/* .recent_vehicle_data{ */
-  /* width: 50%; */
-  /* height: 100px; */
-/* } */
 .header_recent_data{
   margin: 1% 8%;
 }
 .header_recent_data1{
-  margin: 1% 3%;
+  padding-top: 0.5%;
 }
 .recent_vehicle_td{
   margin-bottom: 0px;
@@ -113,7 +104,6 @@ i.update_driver,i.add_driver{
 .first_car{
   display: flex;
   margin-bottom: 0px;
-  /* margin-top: 1%; */
 }
 .car_details{
   margin-left: 10%;
@@ -149,29 +139,17 @@ i.update_driver,i.add_driver{
 }
 .car_info{
   display: flex;
-  /* justify-content: space-between; */
 }
 .diesel_gas_capacity{
   padding-right: 2%;
   margin-top: 1.5%;
 }
-/* .car_info_content{
-  margin-right: 3%;
-} */
 .car_detail_info{
   margin-right: 10%;
 }
 .card{
   margin-bottom: 2%;
 }
-/* tr>.Recent_Transaction_th{
-  padding: 0px;
-} */
-/* #admin_search_bar{
-  margin-top: 1%;
-  margin-left: 2%;
-  margin-right: ;
-} */
 .admin_editpage_header{
   display: flex;
   justify-content: space-between;

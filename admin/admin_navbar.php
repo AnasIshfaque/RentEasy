@@ -65,10 +65,10 @@
                 <a class="dropdown-item text-black" href="admin_car.php">Car</a>
               </li>
               <li>
-                <a class="dropdown-item text-black" href="#">Truck</a>
+                <a class="dropdown-item text-black" href="admin_suv.php">SUV</a>
               </li>
               <li>
-                <a class="dropdown-item text-black" href="#">Microbus</a>
+                <a class="dropdown-item text-black" href="admin_micro.php">Microbus</a>
               </li>
             </ul>
         </li>
