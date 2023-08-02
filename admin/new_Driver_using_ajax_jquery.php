@@ -15,6 +15,7 @@ include '../partials/footer.php';
 ?>
     <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -56,7 +57,29 @@ include '../partials/footer.php';
                         'candidate_id': candidate_id,
                     },
                     success: function (response) {
-                        console.log(response);
+                        console.log(response.content.name);
+                        console.log(response.content.email);
+                        (function(){
+                            emailjs.init("F7KyEqBfXFP2GU7Bp");
+                        })();
+                        var templateParams = {
+                            to_name: response.content.name,
+                            to: response.content.email,
+                            sendername: 'RentEasy',
+                            message: 'Congratulations! You have been selected as a driver in RentEasy.',
+                            replyto: 'noreply@gmail.com',
+                            subject: 'Selected as a Driver'
+                        };
+
+                        var serviceID = "service_o57k1lh"; // Email Service ID
+                        var templateID = "template_p2chhj2"; // Email Template ID
+
+                        emailjs.send(serviceID, templateID, templateParams)
+                            .then( res => {
+                                console.log("Email sent successfully!!")
+                            })
+                            .catch();
+
                         jQuery('#tr_'+candidate_id).hide(500);
                         jQuery('#second_tr_'+candidate_id).hide(500);
                         updateNotificationCount();

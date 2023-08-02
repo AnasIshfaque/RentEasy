@@ -73,7 +73,14 @@ if(isset($_POST['checking_candidate_accept']))
 
     if($result)
     {
-        echo $return = "Updated";
+        $sql1="SELECT `name`, `email` FROM `user` WHERE ID='$candidate_id'";
+        $result1 = mysqli_query($conn, $sql1); 
+        // echo $return = ;
+        $row = mysqli_fetch_assoc($result1);
+        $data = ["content" => $row];
+
+        header('Content-type: application/json');
+        echo json_encode($data);
     }
     else
     {
