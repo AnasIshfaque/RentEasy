@@ -7,11 +7,11 @@
     include '../config/db_conn.php';
 ?>
 
-<div class="modal fade" id="CarEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="SUVEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Car</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit SUV</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             <!-- <span aria-hidden="true">&times;</span> -->
         </button>
@@ -45,7 +45,7 @@
             </div>
 
             <div class="form-group">
-                <label>Car Number: </label>
+                <label>Number: </label>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-light"><i class="fa-solid fa-car"></i></span>
@@ -90,7 +90,7 @@
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary car_update_ajax" name="update">Update</button>
+        <button type="submit" class="btn btn-primary SUV_update_ajax" name="update">Update</button>
       </div>
       </form>
 
@@ -101,11 +101,11 @@
 
 
 <!-- Add Car Modal -->
-<div class="modal fade" id="AddCarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddSUVModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Car</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New SUV</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -122,7 +122,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Car Number: </label>
+                    <label>Number: </label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light"><i class="fa-solid fa-car"></i></span>
@@ -166,20 +166,20 @@
                 <!-- Add input field for the new car image -->
                 <div class="form-group">
                     <label>Car Image:</label>
-                    <input type="file" id="new_img" name="my_image" class="image_input" accept="image/png, image/jpeg">
+                    <input type="file" id="new_SUV_img" name="my_image" class="image_input" accept="image/png, image/jpeg">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="addCarBtn">Add Car</button>
+                <button type="button" class="btn btn-primary" id="addSuvBtn">Add SUV</button>
             </div>
         </div>
     </div>
 </div>
 
 <div class="admin_editpage_header">
-    <input class="admin_serach form-control me-2 " type="search" placeholder="Search" aria-label="Search" autocomplete="off" id="live_search" style="width:82rem;" >
-    <button type="button" class="btn btn-outline-primary add_new_Car" style="height: fit-content;  font-size: 11px; " >Add New</button>
+    <input class="admin_serach form-control me-2 " type="search" placeholder="Search" aria-label="Search" autocomplete="off" id="live_search_SUV" style="width:82rem;" >
+    <button type="button" class="btn btn-outline-primary add_new_SUV" style="height: fit-content;  font-size: 11px; " >Add New</button>
 
 </div>
 <div class="message-show">
@@ -201,11 +201,11 @@ include '../partials/footer.php';
     $(document).ready(function () {
         getdata();
 
-        $("#live_search").keyup(function () {
+        $("#live_search_SUV").keyup(function () {
         var input = $(this).val();
         if (input != "") {
             $.ajax({
-                url: "livesearch.php",
+                url: "livesearchSUV.php",
                 method: "POST",
                 data: {
                     input: input
@@ -225,7 +225,7 @@ include '../partials/footer.php';
                                 '<h6 class="card-title" style="padding: 1%;">' + value['number'] + '</h6>' +
                                 '</div>' +
                                 '<div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">' + value['fuel'] + '</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">' + value['gear'] + '</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>' + value['passenger'] + '</p></div>' +
-                                '<a href="#" class="btn btn-primary specific_vehicle" data-candidate-id=' + value['ID'] + '>Edit</a>' +
+                                '<a href="#" class="btn btn-primary specific_SUV" data-candidate-id=' + value['ID'] + '>Edit</a>' +
                                 '</div></div>';
 
                             $('.car_content').append(htmlString);
@@ -242,12 +242,12 @@ include '../partials/footer.php';
     });
 
     // ... Existing code ...
-    $(".add_new_Car").click(function () {
-        $("#AddCarModal").modal("show");
+    $(".add_new_SUV").click(function () {
+        $("#AddSUVModal").modal("show");
 
     });
 
-    $('#new_img').change(function() {
+    $('#new_SUV_img').change(function() {
     // Get the selected file from the input element
         var file = this.files[0];
 
@@ -264,28 +264,28 @@ include '../partials/footer.php';
         }
     });
 
-    $('#AddCarModal').on('hidden.bs.modal', function () {
+    $('#AddSUVModal').on('hidden.bs.modal', function () {
         $('#selected_new_image_preview').attr('src', '');
         var newFileInput = $("<input>").attr({
             type: "file",
-            id: "new_img",
+            id: "new_SUV_img",
             name: "my_image",
             class: "image_input",
             accept: "image/png, image/jpeg"
         });
 
         // Replace the old input element with the new one
-        $('#new_img').replaceWith(newFileInput);
+        $('#new_SUV_img').replaceWith(newFileInput);
 
     });
 
     // Handle "Add Car" button click
-    $("#addCarBtn").click(function (e) {
+    $("#addSuvBtn").click(function (e) {
 
         e.preventDefault();
 
         // Get the selected file from the input element
-        var fileInput = document.getElementById('new_img');
+        var fileInput = document.getElementById('new_SUV_img');
         var file = fileInput.files[0];
 
         // Create a new FormData object
@@ -295,7 +295,7 @@ include '../partials/footer.php';
         formData.append('my_image', file);
 
         // Add other form data to the FormData object if needed
-        formData.append('checcking_new_Car', true);
+        formData.append('checcking_new_SUV', true);
         // formData.append('new_car_number', $('#edit_ID').val());
         formData.append('new_car_model', $('#new_model').val());
         formData.append('new_car_reg_num', $('#new_number').val());
@@ -314,13 +314,13 @@ include '../partials/footer.php';
                 console.log('Success:', response);
                 $("#new_model").val("");
                 $("#new_number").val("");
-                // $("#new_img").empty();
+                // $("#new_SUV_img").empty();
                 $('#new_fuel').val("");
                 // $('#selected_new_image_preview').attr('src', '');
                 // $('selected_new_image_preview').empty();
                 $('#new_gear').val("");
                 $('#new_passenger').val("");
-                $('#AddCarModal').modal('hide');
+                $('#AddSUVModal').modal('hide');
                 $('.car_content').empty(); // Clear existing content
 
                 getdata(); // Display all cars if the search input is empty
@@ -335,13 +335,13 @@ include '../partials/footer.php';
 
 
 
-        $(document).on("click", ".specific_vehicle", function () {
+        $(document).on("click", ".specific_SUV", function () {
             var candidate_id = $(this).data('candidate-id');
             $.ajax({
                     type: "POST",
                     url: "code.php",
                     data: {
-                        'checking_car_edit': true,
+                        'checking_suv_edit': true,
                         'candidate_id': candidate_id,
                     },
                     success: function (response) {
@@ -371,13 +371,13 @@ include '../partials/footer.php';
                             });
                             $('#selected_image_preview').attr('src', 'uploads/' + editCar['image']);
                         });
-                        $('#CarEditModal').modal('show');
+                        $('#SUVEditModal').modal('show');
 
                     }
                 });
         });
 
-    $('.car_update_ajax').click(function (e) {
+    $('.SUV_update_ajax').click(function (e) {
         e.preventDefault();
 
         // Get the selected file from the input element
@@ -391,7 +391,7 @@ include '../partials/footer.php';
         formData.append('my_image', file);
 
         // Add other form data to the FormData object if needed
-        formData.append('checking_car_update', true);
+        formData.append('checking_suv_update', true);
         formData.append('edit_car_number', $('#edit_ID').val());
         formData.append('edit_car_model', $('#edit_model').val());
         formData.append('edit_car_reg_num', $('#edit_number').val());
@@ -409,7 +409,7 @@ include '../partials/footer.php';
             success: function (response) {
                 // Handle the server response here
                 console.log('Success:', response);
-                $('#CarEditModal').modal('hide');
+                $('#SUVEditModal').modal('hide');
                 // location.reload();
                 $('.car_content').empty(); // Clear existing content
 
@@ -430,7 +430,7 @@ include '../partials/footer.php';
         {
             $.ajax({
                 type: "GET",
-                url: "fetch_car.php",
+                url: "fetch_SUV.php",
                 success: function (response) {
                     $.each(response, function (key, value) { 
                         var htmlString =
@@ -443,7 +443,7 @@ include '../partials/footer.php';
                         '<h6 class="card-title" style="padding: 1%;">' + value['number'] + '</h6>' +
                         '</div>' +
                         '<div class="car_info"><i class="fa-solid fa-gas-pump diesel_gas_capacity"></i><p class="car_detail_info">' + value['fuel'] + '</p> <i class="fa-solid fa-gear diesel_gas_capacity"></i><p class="car_detail_info">' + value['gear'] + '</p><i class="fa-solid fa-user diesel_gas_capacity"></i><p>' + value['passenger'] + '</p></div>' +
-                        '<a href="#" class="btn btn-primary specific_vehicle" data-candidate-id=' + value['ID'] + '>Edit</a>' +
+                        '<a href="#" class="btn btn-primary specific_SUV" data-candidate-id=' + value['ID'] + '>Edit</a>' +
                         '</div></div>';
 
                         $('.car_content').append(htmlString);

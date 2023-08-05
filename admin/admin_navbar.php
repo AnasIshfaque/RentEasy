@@ -13,6 +13,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
   rel="stylesheet"
 />
+<link rel="stylesheet" href="../styles/header.css">
 <!-- MDB -->
 <script
   type="text/javascript"
@@ -64,10 +65,10 @@
                 <a class="dropdown-item text-black" href="admin_car.php">Car</a>
               </li>
               <li>
-                <a class="dropdown-item text-black" href="#">Truck</a>
+                <a class="dropdown-item text-black" href="admin_suv.php">SUV</a>
               </li>
               <li>
-                <a class="dropdown-item text-black" href="#">Microbus</a>
+                <a class="dropdown-item text-black" href="admin_micro.php">Microbus</a>
               </li>
             </ul>
         </li>
@@ -96,14 +97,8 @@
           data-mdb-toggle="dropdown"
           aria-expanded="false"
         >
-          <i class="fas fa-bell"></i>
-          <?php
-            require_once '../config/db_conn.php';
-            $sql="SELECT COUNT(verified) AS pending_Case FROM driver_info WHERE verified=0 and ID<>100";
-            $query = mysqli_query($conn, $sql);
-            $result = mysqli_fetch_assoc($query);
-          ?>
-          <span class="badge rounded-pill badge-notification bg-danger"><?php echo $result['pending_Case']>0 ? $result['pending_Case'] :"" ?></span>
+          <i class="fas fa-bell" ></i>
+          <span class="badge rounded-pill badge-notification bg-danger" id="noti_number"></span>
         </a>
         <ul
           class="dropdown-menu dropdown-menu-end"
@@ -114,42 +109,40 @@
           </li>
         </ul>
       </div>
-      <!-- Avatar -->
-      <div class="dropdown">
-        <a
-          class="dropdown-toggle d-flex align-items-center hidden-arrow"
-          href="#"
-          id="navbarDropdownMenuAvatar"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="../assets/images/ProfileImg/admin_profile_pic.png"
-            class="rounded-circle"
-            height="30"
-            alt="Black and White Portrait of a Man"
-            loading="lazy"
-          />
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuAvatar"
-        >
-          <li>
-            <a class="dropdown-item text-black" href="#">My profile</a>
-          </li>
-          <li>
-            <a class="dropdown-item text-black" href="#">Settings</a>
-          </li>
-          <li>
-            <a class="dropdown-item text-black" href="#">Logout</a>
-          </li>
-        </ul>
-      </div>
+
+      <a href="../partials/logout.php" class="logoutBtn">Log out</a>
+
     </div>
     <!-- Right elements -->
   </div>
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+
+
+<script type="text/javascript">
+ function loadDoc() {
+  
+
+  setInterval(function(){
+
+   var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      if(this.responseText > 0){
+     document.getElementById("noti_number").innerHTML = this.responseText;
+    }
+    else{
+      document.getElementById("noti_number").innerHTML = "";
+    }
+  }
+   };
+   xhttp.open("GET", "update_notification_count.php", true);
+   xhttp.send();
+
+  },250);
+
+
+ }
+ loadDoc();
+</script>

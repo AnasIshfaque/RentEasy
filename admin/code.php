@@ -68,12 +68,19 @@ if(isset($_POST['checking_candidate_accept']))
 {
     $candidate_id = $_POST['candidate_id'];
 
-    $sql="UPDATE driver_info SET verified = 1 WHERE ID = '$candidate_id'";
+    $sql="UPDATE driver_info SET verified = 1 , status='active' WHERE ID = '$candidate_id'";
     $result = mysqli_query($conn, $sql);
 
     if($result)
     {
-        echo $return = "Updated";
+        $sql1="SELECT `name`, `email` FROM `user` WHERE ID='$candidate_id'";
+        $result1 = mysqli_query($conn, $sql1); 
+        // echo $return = ;
+        $row = mysqli_fetch_assoc($result1);
+        $data = ["content" => $row];
+
+        header('Content-type: application/json');
+        echo json_encode($data);
     }
     else
     {
@@ -130,4 +137,306 @@ if(isset($_POST['checking_update']))
     }
 }
 
+
+///car edit
+if (isset($_POST['checking_car_update'])) {
+    // Your other data handling code...
+
+    
+    $edit_car_number = $_POST['edit_car_number'];
+    $edit_car_model = $_POST['edit_car_model'];
+    $edit_car_reg_num = $_POST['edit_car_reg_num'];
+    $edit_car_fuel = $_POST['edit_car_fuel'];
+    $edit_car_gear = $_POST['edit_car_gear'];
+    $edit_car_passenger = $_POST['edit_car_passenger'];
+
+    $sql1="UPDATE vehicle SET model = '$edit_car_model', number = '$edit_car_reg_num', fuel='$edit_car_fuel', gear='$edit_car_gear', passenger='$edit_car_passenger' WHERE ID = '$edit_car_number'";   
+    $result1 = mysqli_query($conn, $sql1);
+
+    if (isset($_FILES['my_image'])) {
+        $file = $_FILES['my_image'];
+        $file_name = $file['name'];
+        $file_temp = $file['tmp_name'];
+
+        $destination_directory="uploads/".$file_name;
+
+        // Move the uploaded file to the destination directory
+        if (move_uploaded_file($file_temp, $destination_directory)) {
+            // File upload success
+            $sql="UPDATE vehicle SET image='$file_name' WHERE ID = '$edit_car_number'";   
+            $result = mysqli_query($conn, $sql);
+            echo "File uploaded successfully.";
+        } else {
+            // File upload failed
+            echo "Error uploading the file.";
+        }
+    } 
+    else {
+        // File not found in the request
+        echo "No file selected.";
+    }
+
+    // Your other data handling code...
+}
+
+
+
+if (isset($_POST['checcking_new_Car'])) {
+    // Your other data handling code...
+    $new_car_model = $_POST['new_car_model'];
+    $new_car_reg_num = $_POST['new_car_reg_num'];
+    $new_car_fuel = $_POST['new_car_fuel'];
+    $new_car_gear = $_POST['new_car_gear'];
+    $new_car_passenger = $_POST['new_car_passenger'];
+
+    if (isset($_FILES['my_image'])) {
+        $file = $_FILES['my_image'];
+        $file_name = $file['name'];
+        $file_temp = $file['tmp_name'];
+
+        $destination_directory="uploads/".$file_name;
+
+        // Move the uploaded file to the destination directory
+        if (move_uploaded_file($file_temp, $destination_directory)) {
+            $sql1="INSERT INTO `vehicle`( `model`, `number`, `v_type`,  `fuel`, `gear`, `passenger` ,`image`) VALUES ('$new_car_model','$new_car_reg_num','Car','$new_car_fuel','$new_car_gear','$new_car_passenger','$file_name')";   
+            $result1 = mysqli_query($conn, $sql1);
+            // File upload success
+            echo "File uploaded successfully.";
+        } else {
+            // File upload failed
+            echo "Error uploading the file.";
+        }
+    } 
+    else {
+        // File not found in the request
+        echo "No file selected.";
+    }
+
+    // Your other data handling code...
+}
+
+
+if(isset($_POST['checking_car_edit']))
+{
+    $candidate_id = $_POST['candidate_id'];
+    $result_array = [];
+
+    $sql = "select ID,model,number,image,fuel,gear,passenger from vehicle where ID='$candidate_id'";
+    $query_run = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            // $row['image'] = 'uploads/' . $row['image'];
+
+            array_push($result_array, $row);
+        }
+        header('Content-type: application/json');
+        echo json_encode($result_array);
+    }
+    else
+    {
+        echo $return = "<h4>No Record Found</h4>";
+    }
+}
+
+
+if (isset($_POST['checking_suv_update'])) {
+    // Your other data handling code...
+
+    
+    $edit_car_number = $_POST['edit_car_number'];
+    $edit_car_model = $_POST['edit_car_model'];
+    $edit_car_reg_num = $_POST['edit_car_reg_num'];
+    $edit_car_fuel = $_POST['edit_car_fuel'];
+    $edit_car_gear = $_POST['edit_car_gear'];
+    $edit_car_passenger = $_POST['edit_car_passenger'];
+
+    $sql1="UPDATE vehicle SET model = '$edit_car_model', number = '$edit_car_reg_num', fuel='$edit_car_fuel', gear='$edit_car_gear', passenger='$edit_car_passenger' WHERE ID = '$edit_car_number'";   
+    $result1 = mysqli_query($conn, $sql1);
+
+    if (isset($_FILES['my_image'])) {
+        $file = $_FILES['my_image'];
+        $file_name = $file['name'];
+        $file_temp = $file['tmp_name'];
+
+        $destination_directory="uploads/".$file_name;
+
+        // Move the uploaded file to the destination directory
+        if (move_uploaded_file($file_temp, $destination_directory)) {
+            // File upload success
+            $sql="UPDATE vehicle SET image='$file_name' WHERE ID = '$edit_car_number'";   
+            $result = mysqli_query($conn, $sql);
+            echo "File uploaded successfully.";
+        } else {
+            // File upload failed
+            echo "Error uploading the file.";
+        }
+    } 
+    else {
+        // File not found in the request
+        echo "No file selected.";
+    }
+
+    // Your other data handling code...
+}
+
+if(isset($_POST['checking_suv_edit']))
+{
+    $candidate_id = $_POST['candidate_id'];
+    $result_array = [];
+
+    $sql = "select ID,model,number,image,fuel,gear,passenger from vehicle where ID='$candidate_id'";
+    $query_run = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            // $row['image'] = 'uploads/' . $row['image'];
+
+            array_push($result_array, $row);
+        }
+        header('Content-type: application/json');
+        echo json_encode($result_array);
+    }
+    else
+    {
+        echo $return = "<h4>No Record Found</h4>";
+    }
+}
+
+if (isset($_POST['checcking_new_SUV'])) {
+    // Your other data handling code...
+    $new_car_model = $_POST['new_car_model'];
+    $new_car_reg_num = $_POST['new_car_reg_num'];
+    $new_car_fuel = $_POST['new_car_fuel'];
+    $new_car_gear = $_POST['new_car_gear'];
+    $new_car_passenger = $_POST['new_car_passenger'];
+
+    if (isset($_FILES['my_image'])) {
+        $file = $_FILES['my_image'];
+        $file_name = $file['name'];
+        $file_temp = $file['tmp_name'];
+
+        $destination_directory="uploads/".$file_name;
+
+        // Move the uploaded file to the destination directory
+        if (move_uploaded_file($file_temp, $destination_directory)) {
+            $sql1="INSERT INTO `vehicle`( `model`, `number`, `v_type`,  `fuel`, `gear`, `passenger` ,`image`) VALUES ('$new_car_model','$new_car_reg_num','SUV','$new_car_fuel','$new_car_gear','$new_car_passenger','$file_name')";   
+            $result1 = mysqli_query($conn, $sql1);
+            // File upload success
+            echo "File uploaded successfully.";
+        } else {
+            // File upload failed
+            echo "Error uploading the file.";
+        }
+    } 
+    else {
+        // File not found in the request
+        echo "No file selected.";
+    }
+
+    // Your other data handling code...
+}
+
+
+if (isset($_POST['checking_Micro_update'])) {
+    // Your other data handling code...
+
+    
+    $edit_car_number = $_POST['edit_car_number'];
+    $edit_car_model = $_POST['edit_car_model'];
+    $edit_car_reg_num = $_POST['edit_car_reg_num'];
+    $edit_car_fuel = $_POST['edit_car_fuel'];
+    $edit_car_gear = $_POST['edit_car_gear'];
+    $edit_car_passenger = $_POST['edit_car_passenger'];
+
+    $sql1="UPDATE vehicle SET model = '$edit_car_model', number = '$edit_car_reg_num', fuel='$edit_car_fuel', gear='$edit_car_gear', passenger='$edit_car_passenger' WHERE ID = '$edit_car_number'";   
+    $result1 = mysqli_query($conn, $sql1);
+
+    if (isset($_FILES['my_image'])) {
+        $file = $_FILES['my_image'];
+        $file_name = $file['name'];
+        $file_temp = $file['tmp_name'];
+
+        $destination_directory="uploads/".$file_name;
+
+        // Move the uploaded file to the destination directory
+        if (move_uploaded_file($file_temp, $destination_directory)) {
+            // File upload success
+            $sql="UPDATE vehicle SET image='$file_name' WHERE ID = '$edit_car_number'";   
+            $result = mysqli_query($conn, $sql);
+            echo "File uploaded successfully.";
+        } else {
+            // File upload failed
+            echo "Error uploading the file.";
+        }
+    } 
+    else {
+        // File not found in the request
+        echo "No file selected.";
+    }
+
+    // Your other data handling code...
+}
+
+if(isset($_POST['checking_Micro_edit']))
+{
+    $candidate_id = $_POST['candidate_id'];
+    $result_array = [];
+
+    $sql = "select ID,model,number,image,fuel,gear,passenger from vehicle where ID='$candidate_id'";
+    $query_run = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($query_run) > 0)
+    {
+        foreach($query_run as $row)
+        {
+            // $row['image'] = 'uploads/' . $row['image'];
+
+            array_push($result_array, $row);
+        }
+        header('Content-type: application/json');
+        echo json_encode($result_array);
+    }
+    else
+    {
+        echo $return = "<h4>No Record Found</h4>";
+    }
+}
+if (isset($_POST['checcking_new_Micro'])) {
+    // Your other data handling code...
+    $new_car_model = $_POST['new_car_model'];
+    $new_car_reg_num = $_POST['new_car_reg_num'];
+    $new_car_fuel = $_POST['new_car_fuel'];
+    $new_car_gear = $_POST['new_car_gear'];
+    $new_car_passenger = $_POST['new_car_passenger'];
+
+    if (isset($_FILES['my_image'])) {
+        $file = $_FILES['my_image'];
+        $file_name = $file['name'];
+        $file_temp = $file['tmp_name'];
+
+        $destination_directory="uploads/".$file_name;
+
+        // Move the uploaded file to the destination directory
+        if (move_uploaded_file($file_temp, $destination_directory)) {
+            $sql1="INSERT INTO `vehicle`( `model`, `number`, `v_type`,  `fuel`, `gear`, `passenger` ,`image`) VALUES ('$new_car_model','$new_car_reg_num','Micro','$new_car_fuel','$new_car_gear','$new_car_passenger','$file_name')";   
+            $result1 = mysqli_query($conn, $sql1);
+            // File upload success
+            echo "File uploaded successfully.";
+        } else {
+            // File upload failed
+            echo "Error uploading the file.";
+        }
+    } 
+    else {
+        // File not found in the request
+        echo "No file selected.";
+    }
+
+    // Your other data handling code...
+}
 ?>

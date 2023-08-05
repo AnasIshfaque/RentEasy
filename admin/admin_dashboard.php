@@ -5,7 +5,9 @@
 <?php
     include('admin_navbar.php');
     include '../config/db_conn.php';
- 
+    // query for the pie chart
+    $query = "SELECT vehicle.model, COUNT(*) AS total_cars FROM renting INNER JOIN vehicle ON vehicle.ID = renting.v_id GROUP BY vehicle.model LIMIT 5";
+    $result=mysqli_query($conn,$query);
 ?>
 <div class="dashboardof_Admin">
     <div class="rentalDetails" >
@@ -13,27 +15,32 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14612.975403928907!2d90.497437!3d23.70298445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1690220726108!5m2!1sen!2sbd" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="car_number_one">
+        <?php 
+            $sql1="SELECT Date(pickup_time) as pick_date, Time(pickup_time) as pick_time, Date(dst_time) as desti_date, Time(dst_time) as desti_time, vehicle.image FROM renting INNER JOIN vehicle on vehicle.ID=renting.v_id ORDER BY dst_time DESC LIMIT 1";
+            $result2=mysqli_query($conn,$sql1);
+            $info1 = mysqli_fetch_array($result2)
+        ?>
 
         <div class="first_car">
-            <img src="../assets/images/car_images/Honda_CR-V.png" alt="Honda CR-V" width="45%" height="90%">
+            <img src="uploads/<?php echo $info1['image'] ?>" id="latest_Car_img" alt="Honda CR-V" width="45%" height="90%">
                 <div class="car_details">
                     <h3 class="car_model">Honda CR-V</h3>
                     <p class="car_model">SUV</p>
                 </div>
         </div>
-
+        
         <h6 style="margin-left: 1%;">Pick-Up</h6>
         <div class="first_car_pickup">
             <i class="fa-solid fa-location-dot fa-lg location_icon"></i> <input type="text" name="" id="" placeholder="Narayanganj" readonly class="pick_up_details">
-            <i class="fa-regular fa-calendar-days fa-lg location_icon"></i><input type="text" name="" id="" placeholder="24 July 2023" readonly class="pick_up_details">
-            <i class="fa-regular fa-clock fa-lg location_icon"></i><input type="text" name="" id="" placeholder="07:00 AM" readonly>
+            <i class="fa-regular fa-calendar-days fa-lg location_icon"></i><input type="text" name="" id="" placeholder="<?php echo $info1['pick_date'] ?>" readonly class="pick_up_details">
+            <i class="fa-regular fa-clock fa-lg location_icon"></i><input type="text" name="" id="" placeholder="<?php echo $info1['pick_time'] ?>" readonly>
         </div>
 
         <h6 style="margin-left: 1%;">Drop-Off</h6>
         <div class="first_car_pickup">
             <i class="fa-solid fa-location-dot fa-lg location_icon"></i> <input type="text" name="" id="" placeholder="UIU Permanent Campus" readonly class="pick_up_details">
-            <i class="fa-regular fa-calendar-days fa-lg location_icon"></i><input type="text" name="" id="" placeholder="24 July 2023" readonly class="pick_up_details">
-            <i class="fa-regular fa-clock fa-lg location_icon"></i><input type="text" name="" id="" placeholder="08:00 AM" readonly>
+            <i class="fa-regular fa-calendar-days fa-lg location_icon"></i><input type="text" name="" id="" placeholder="<?php echo $info1['desti_date'] ?>" readonly class="pick_up_details">
+            <i class="fa-regular fa-clock fa-lg location_icon"></i><input type="text" name="" id="" placeholder="<?php echo $info1['desti_time'] ?>" readonly>
         </div>
         </div>
 
@@ -41,49 +48,39 @@
 
     <div class="transaction_pieChart">
         <div class="top_rentals">
-            <div id="donutchart" style="width: 700px; height: 325px;"></div>
+            <!-- <div id="donutchart" style="width: 700px; height: 325px;"></div> -->
+            <div id="donutchart"></div>
         </div>
-        
         <div class="recent_transaction">
             <table class="table caption-top">
                 <div class="head_of_transaction_table">
-                    <p class="header_recent_data">Recent Transaction</p>
-                    <a href="#" class="header_recent_data">View All</a>
+                    <p class="header_recent_data1">Recent Transaction</p>
+                    <!-- <a href="#" class="header_recent_data">View All</a> -->
                 </div>
                 <tbody>
+                <?php
+                    $sql="SELECT vehicle.model,vehicle.number, vehicle.v_type,vehicle.image, Date(dst_time) as date, Time(dst_time) as time FROM renting INNER JOIN vehicle on vehicle.ID=renting.v_id ORDER BY dst_time DESC LIMIT 5";
+                    $result1=mysqli_query($conn,$sql);
+                    while ($info = mysqli_fetch_array($result1)){
+                ?>
                     <tr>
-                        <th><img src="../assets/images/car_images/Honda_CR-V.png" alt="Honda CR-V" height="80px" width="100px"></th>
+                        <th class="Recent_Transaction_th" style="padding: 0px;"><img src="uploads/<?php  echo $info['image'] ?>" alt="Honda CR-V" height="80px" width="100px"></th>
                         <td class="recent_vehicle_data">
-                            <p>Honda CR-V</p>
-                            <p class="recent_vehicle_td">SUV</p>
+                            <p><?php echo $info['model'] ?></p>
+                            <p class="recent_vehicle_td">Vehicle Number: <?php echo $info['number'] ?></p>
+                        </td>
+                        <td class="recent_vehicle_data">
+                            <p><?php echo $info['date'] ?></p>
+                            <p class="recent_vehicle_td"><?php echo $info['time'] ?></p>
                         </td>
                         <td>
-                            <p>24 July</p>
+                            <p><?php echo $info['v_type'] ?></p>
                             <p class="recent_vehicle_td">Tk 3150</p>
                         </td>
                     </tr>
-                    <tr>
-                        <th><img src="../assets/images/car_images/Premio.png" alt="Honda CR-V" height="90px" width="150px"></th>
-                        <td class="recent_vehicle_data">
-                            <p>Toyota Premio</p>
-                            <p class="recent_vehicle_td">Car</p>
-                        </td>
-                        <td>
-                            <p>23 July</p>
-                            <p class="recent_vehicle_td">Tk 1650</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><img src="../assets/images/car_images/Axio.png" alt="Honda CR-V" height="90px" width="150px"></th>
-                        <td class="recent_vehicle_data">
-                            <p>Toyota Axio</p>
-                            <p class="recent_vehicle_td">Car</p>
-                        </td>
-                        <td>
-                            <p>23 July</p>
-                            <p class="recent_vehicle_td">Tk 1450</p>
-                        </td>
-                    </tr>
+                    <?php
+                     }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -98,17 +95,20 @@ include '../partials/footer.php';
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Toyota - 11',     11],
-          ['Audi - 2',      2],
-          ['BMW - 1',  1],
-          ['MG - 2', 2],
-          ['Honda - 7',    7]
+          ['Car Model', 'Number of Cars'],
+        <?php  
+            while($row = mysqli_fetch_array($result))  
+            {  
+                echo "['".$row["model"]."', ".$row["total_cars"]."],";  
+            }  
+            ?> 
         ]);
 
         var options = {
           title: 'Top 5 Rental Vehicle ',
           pieHole: 0.6,
+          width: 700,
+          height: 325,
           pieSliceText: 'none',
           tooltip: {
                 text: '10% percentage' // Show the percentage in the tooltip
