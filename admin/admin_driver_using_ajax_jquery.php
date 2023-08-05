@@ -1,5 +1,3 @@
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css" integrity="sha512-9YHSK59/rjvhtDcY/b+4rdnl0V4LPDWdkKceBl8ZLF5TB6745ml1AfluEU6dFWqwDw9lPvnauxFgpKvJqp7jiQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/admin_style.css">
@@ -65,7 +63,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>License:</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -73,7 +71,7 @@
                     </div>
                     <input type="text" class="form-control" id="edit_license">
                 </div>
-            </div>
+            </div> -->
 
         </div>
       <div class="modal-footer">
@@ -88,9 +86,8 @@
     <div class="message-show">
 
     </div>
-        <tbody class="content">
-      
-                                    
+    <tbody class="content">
+                                         
     </tbody>
 </table> 
 
@@ -98,11 +95,9 @@
 include '../partials/footer.php';
 ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+   
     <script>
         $(document).ready(function () {
             getdata();
@@ -129,7 +124,7 @@ include '../partials/footer.php';
                             'driver_Name': driver_Name,
                             'driver_dov': driver_dov,
                             'driver_mobile': driver_mobile,
-                            'driver_license': driver_license,
+                            // 'driver_license': driver_license,
                         },
                         success: function (response) {
                             // console.log(response);
@@ -138,9 +133,7 @@ include '../partials/footer.php';
                             $('.message-show').append('\
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">\
                                     <strong></strong> '+response+'.\
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
-                                        <span aria-hidden="true">&times;</span>\
-                                    </button>\
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>\
                                 </div>\
                             ');
 
@@ -159,10 +152,8 @@ include '../partials/footer.php';
                     // console.log("Please enter all fileds.");
                     $('.error-message-update').append('\
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">\
-                            <strong></strong> Please enter all fileds.\
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
-                                <span aria-hidden="true">&times;</span>\
-                            </button>\
+                            Please enter all fileds.\
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>\
                         </div>\
                     ');
                 }

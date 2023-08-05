@@ -22,7 +22,7 @@
 <!-- <link rel="stylesheet" href="../styles/admin_style.css"> -->
 
 
-<nav class="navbar navbar-expand-lg navbar-info  " >
+<nav class="navbar navbar-expand-lg navbar-info navbar_Css" >
   <!-- Container wrapper -->
   <div class="container-fluid">
     <!-- Toggle button -->
@@ -52,13 +52,16 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
         <li class="nav-item">
-          <a class="nav-link text-white" href="admin_reserve_list_using_jquery_and_ajax.php">Reserve List</a>
+          <a class="nav-link text-white" href="admin_dashboard.php">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white nav_site" href="admin_reserve_list_using_jquery_and_ajax.php">Reserve List</a>
         </li>
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">Vehicle</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>
-                <a class="dropdown-item text-black" href="#">Car</a>
+                <a class="dropdown-item text-black" href="admin_car.php">Car</a>
               </li>
               <li>
                 <a class="dropdown-item text-black" href="#">Truck</a>
@@ -96,11 +99,9 @@
           <i class="fas fa-bell"></i>
           <?php
             require_once '../config/db_conn.php';
-            $sql="SELECT COUNT(verified) AS pending_Case FROM driver WHERE verified=0 and ID<>100";
+            $sql="SELECT COUNT(verified) AS pending_Case FROM driver_info WHERE verified=0 and ID<>100";
             $query = mysqli_query($conn, $sql);
             $result = mysqli_fetch_assoc($query);
-            // $pendingCaseCount = $result['pending_Case'];
-
           ?>
           <span class="badge rounded-pill badge-notification bg-danger"><?php echo $result['pending_Case']>0 ? $result['pending_Case'] :"" ?></span>
         </a>
@@ -111,12 +112,6 @@
           <li>
             <a class="dropdown-item" href="new_Driver_using_ajax_jquery.php">Driver Candidates</a>
           </li>
-          <!-- <li>
-            <a class="dropdown-item" href="#">Another news</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </li> -->
         </ul>
       </div>
       <!-- Avatar -->
