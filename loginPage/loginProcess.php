@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_SESSION['type_id'] == 1) {
                 header ('Location:../customer/homePage.php');
             } else if ($_SESSION['type_id'] == 2) {
-                header ('Location:../driver/homePage.php');
+                header ('Location:../driver/driver_home.php');
             } else if ($_SESSION['type_id'] == 3) {
                 header ('Location:../admin/admin_dashboard.php');
             }
