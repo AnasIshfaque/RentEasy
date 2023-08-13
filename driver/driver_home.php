@@ -6,7 +6,7 @@ $driverId = $_SESSION['ID'];// Example driver ID
 
 // Fetch driver information from the database
 $query = "
-      SELECT u.name, d.*
+      SELECT u.name,u.email, d.*
       FROM driver_info d
       JOIN user u ON d.id = u.id
       WHERE d.id = $driverId
@@ -63,8 +63,8 @@ if ($result && mysqli_num_rows($result) > 0) {
   </div>
   <hr>
   <div class="location">
-    <p><i class="fa-solid fa-globe"></i> Phone Number: <strong><?php echo $driverData['mobile']; ?></strong></p>
-    <p><i class="fa-solid fa-location-dot"></i> From <strong><?php echo $driverData['location']; ?></strong></p>
+    <p><i class="fa-solid fa-phone"></i> Phone Number: <strong><?php echo $driverData['mobile']; ?></strong></p>
+    <p><i class="fa-solid fa-envelope"></i></i> Email: <strong><?php echo $driverData['email']; ?></strong></p>
   </div>
 </section>
 
