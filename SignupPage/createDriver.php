@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($userImgError === 0) {
             if ($userImgSize < 1000000) {
                 $userImgNameNew = uniqid('', true) . "." . $userImgActualExt;
-                $userImgDestination = '../assets/images/' . $userImgNameNew;
+                $userImgDestination = '../assets/images/profileImg/' . $userImgNameNew;
                 move_uploaded_file($userImgTmpName, $userImgDestination);
             } else {
                 echo "Your file is too big!";

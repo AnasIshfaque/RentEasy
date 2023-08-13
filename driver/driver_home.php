@@ -6,7 +6,7 @@ $driverId = $_SESSION['ID'];// Example driver ID
 
 // Fetch driver information from the database
 $query = "
-      SELECT u.name,u.email, d.*
+      SELECT u.name,u.email,u.profileImg, d.*
       FROM driver_info d
       JOIN user u ON d.id = u.id
       WHERE d.id = $driverId
@@ -40,7 +40,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 <!-- profile section -->
 <section class="profile">
   <div class="imgDiv">
-    <img class="proImg" src="../assets/images/ProfileImg/per-1.jpg" alt="">
+    <img class="proImg" src="../assets/images/ProfileImg/<?php echo $driverData['profileImg'];?>" alt="">
     <h2><?php echo $driverData['name']; ?></h2>
   </div>
   <div class="tripInfo">
@@ -75,8 +75,7 @@ if ($result && mysqli_num_rows($result) > 0) {
       <h2>Skills</h2>
       <div class="lic">
         <h4>license</h4>
-        <p>ID: NDK1039220439022</p>
-        <a href="">View</a>
+        <p><a href="../assets/images/pdf_uploads/<?php echo $driverData['license'];?>">View</a> your linecse</p>
       </div>
       <div class="drive">
         <h4>Drive</h4>
