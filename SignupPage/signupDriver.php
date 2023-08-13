@@ -3,10 +3,10 @@ include '../partials/header.php';
 ?>
 
 <div class="signupSection">
-    <form action="createDriver.php" method="post" class="signupcard">
+    <form action="createDriver.php" method="post" enctype="multipart/form-data" class="signupcard">
         <div class="profileImg">
-            <img src="../assets/images/" alt="profile photo">
-            <p>profile image upload</p>
+            <img src="../assets/images/" alt="profile photo"><br>
+            <input type="file" name="profileImg" id="profileImg">
         </div>
         <div class="signupInfo">
             <h1>Sign up</h1>

@@ -1,5 +1,19 @@
 <?php
 $name = $email = $DOB = $password = $license = $mobile = "";
+
+$imgFile = $_FILES['profileImg'];
+
+$userImgName = $_FILES['profileImg']['name'];
+$userImgTmpName = $_FILES['profileImg']['tmp_name'];
+$userImgSize = $_FILES['profileImg']['size'];
+$userImgError = $_FILES['profileImg']['error'];
+$userImgType = $_FILES['profileImg']['type'];
+
+$userImgExt = explode('.', $userImgName);
+$userImgActualExt = strtolower(end($userImgExt));
+
+$allowed = array('jpg', 'jpeg', 'png');
+
 $nameflag = $emailflag = $dobflag = $passflag = $licenseflag = $mobileflag = 0;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
@@ -56,6 +70,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $mobileflag = 1;
         $mobile = test_input($_POST["mobile"]);
+    }
+
+    if(in_array($userImgActualExt, $allowed)){
+        if($userImgError === 0){
+            if($userImgSize < 1000000){
+                $userImgNameNew = uniqid('', true).".".$userImgActualExt;
+                $userImgDestination = '../assets/images/'.$userImgNameNew;
+                move_uploaded_file($userImgTmpName, $userImgDestination);
+            }
+            else{
+                echo "Your file is too big!";
+            }
+        }
+        else{
+            echo "There was an error uploading your file!";
+        }
+    }
+    else{
+        echo "You cannot upload files of this type!";
     }
 
     if ($nameflag && $emailflag && $dobflag && $passflag) {
