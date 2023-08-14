@@ -2,7 +2,7 @@
 include '../partials/header.php';
 include '../config/db_conn.php';
 include '../config/functions.php';
-$driverId = $_SESSION['ID'];// Example driver ID
+$driverId = $_SESSION['ID']; // Example driver ID
 
 // Fetch driver information from the database
 $query = "
@@ -34,13 +34,18 @@ if ($result && mysqli_num_rows($result) > 0) {
     $serviceTime = $days . ' day' . ($days > 1 ? 's' : '');
   }
 }
+
+// driver achivment
+$completedTrips = $driverData['trip'];
+$fiveStarTrips = $driverData['countStar'];
+$serviceYears = $serviceTime;
 ?>
 
 <link rel="stylesheet" href="../styles/driver.css">
 <!-- profile section -->
 <section class="profile">
   <div class="imgDiv">
-    <img class="proImg" src="../assets/images/ProfileImg/<?php echo $driverData['profileImg'];?>" alt="">
+    <img class="proImg" src="../assets/images/ProfileImg/<?php echo $driverData['profileImg']; ?>" alt="">
     <h2><?php echo $driverData['name']; ?></h2>
   </div>
   <div class="tripInfo">
@@ -75,7 +80,7 @@ if ($result && mysqli_num_rows($result) > 0) {
       <h2>Skills</h2>
       <div class="lic">
         <h4>license</h4>
-        <p><a href="../assets/images/pdf_uploads/<?php echo $driverData['license'];?>">View</a> your linecse</p>
+        <p><a href="../assets/images/pdf_uploads/<?php echo $driverData['license']; ?>">View</a> your linecse</p>
       </div>
       <div class="drive">
         <h4>Drive</h4>
@@ -263,21 +268,39 @@ if ($result && mysqli_num_rows($result) > 0) {
 <section class="achievment">
   <h2>Your achievments</h2>
   <div class="add-achievments">
-    <div class="ac1">
-      <img class="acvImg" src="../assets/images/achivement/5-star1.jpg" alt="" srcset="">
-      <p>50 5-star trip</p>
-    </div>
-    <div class="ac1">
-      <img class="acvImg" src="../assets/images/achivement/2-year.jpg" alt="">
-      <p>2 year with <br> rentEasy</p>
-    </div>
-    <div class="ac1">
-      <img class="acvImg" src="../assets/images/achivement/late-night.jpg" alt="">
-      <p>100 late night <br> Trip</p>
-    </div>
+    <?php
+    if ($completedTrips >= 2000) {
+      echo '<div class="ac1">';
+      echo '<img class="acvImg" src="../assets/images/achivement/2000cb.jpg" alt="">';
+      echo '<p>Complete 2000<br> Trips</p>';
+      echo '</div>';
+    }
+
+    if ($completedTrips >= 4000) {
+      echo '<div class="ac1">';
+      echo '<img class="acvImg" src="../assets/images/achivement/4000cb.jpg" alt="">';
+      echo '<p>Complete 4000<br> Trips</p>';
+      echo '</div>';
+    }
+
+    if ($fiveStarTrips >= 50) {
+      echo '<div class="ac1">';
+      echo '<img class="acvImg" src="../assets/images/achivement/5-star1.jpg" alt="" srcset="">';
+      echo '<p>50 5-star Trips</p>';
+      echo '</div>';
+    }
+
+    if ($serviceYears >= 2) {
+      echo '<div class="ac1">';
+      echo '<img class="acvImg" src="../assets/images/achivement/2-year.jpg" alt="">';
+      echo '<p>2 Years with <br> rentEasy</p>';
+      echo '</div>';
+    }
+
+    ?>
 
   </div>
 </section>
 <?php
-  include '../partials/footer.php';
+include '../partials/footer.php';
 ?>
