@@ -309,10 +309,10 @@ include '../partials/footer.php';
                             </td>\
                             <td class="rmv_border">\
                                 <span class="text-muted mb-0 ">Driving License:</span>\
-                                <span class="badge  rounded text-black d-inline ms-3">'+value['license']+'</span>\
+                                <span class="badge rounded text-black d-inline ms-3"><a href="../assets/images/pdf_uploads/'+ value['license'] + '" target = "_blank">View</a></span>\
                             </td>\
                             <td class="rmv_border last_row_'+value['ID']+'">';
-                                htmlString +='<a href="#" class="editDriverbtn" title="Edit" data-candidate-id="'+value['ID']+'"><i class="fas fa-edit text-info update_driver"></i></a>\
+                                htmlString +='<a href="#" class="editDriverbtn" title="Edit" data-candidate-id="'+value['ID']+'"><i class="fas fa-edit text-info update_driver"  style="margin: 0% 10%;"></i></a>\
                                 <a href="#"  class="deleteDriver" title="Delete" data-candidate-id="'+value['ID']+'"><i class="fas fa-trash-alt text-danger"></i></a>';
                         htmlString += '</td>\
                         </tr>\
