@@ -14,13 +14,13 @@ $userImgActualExt = strtolower(end($userImgExt));
 
 $allowed = array('jpg', 'jpeg', 'png');
 
-$nameflag = $emailflag = $dobflag = $passflag = $licenseflag = $mobileflag = 0;
+$errors = ['name' => '', 'userImg' => '', 'email' => '', 'DOB' => '', 'password' => '', 'license' => '', 'mobile' => ''];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
-        $nameflag = 0;
-        echo "Name is required";
+        $errors['name'] = "Name is required";
     } else {
-        $nameflag = 1;
+        $errors['name'] = "";
         $name = test_input($_POST["name"]);
         // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
@@ -29,10 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($_POST["email"])) {
-        $emailflag = 0;
-        echo "Email is required";
+        $errors['email'] = "Email is required";
     } else {
-        $emailflag = 1; //flag is set to 1 if email is not empty
+        $errors['email'] = "";
         $email = test_input($_POST["email"]);
         // check if e-mail address is well-formed
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -41,34 +40,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($_POST["DOB"])) {
-        $dobflag = 0;
-        echo "DOB is required";
+        $errors['DOB'] = "DOB is required";
     } else {
-        $dobflag = 1;
+        $errors['DOB'] = "";
         $DOB = test_input($_POST["DOB"]);
     }
 
     if (empty($_POST["password"])) {
-        $passflag = 0;
-        echo "Password is required";
+        $errors['password'] = "Password is required";
     } else {
-        $passflag = 1;
+        $errors['password'] = "";
         $password = test_input($_POST["password"]);
     }
 
+    //handle license
     if (empty($_POST["license"])) {
-        $licenseflag = 0;
-        echo "License is required";
+        $errors['license'] = "License is required";
     } else {
-        $licenseflag = 1;
+        $errors['license'] = "";
         $license = test_input($_POST["license"]);
     }
 
     if (empty($_POST["mobile"])) {
-        $mobileflag = 0;
-        echo "Mobile is required";
+        $errors['mobile'] = "Mobile is required";
     } else {
-        $mobileflag = 1;
+        $errors['mobile'] = "";
         $mobile = test_input($_POST["mobile"]);
     }
 
@@ -80,18 +76,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 move_uploaded_file($userImgTmpName, $userImgDestination);
             }
             else{
-                echo "Your file is too big!";
+                $errors['userImg'] = "Your file is too big!";
             }
         }
         else{
-            echo "There was an error uploading your file!";
+            $errors['userImg'] = "There was an error uploading your file!";
         }
     }
     else{
-        echo "You cannot upload files of this type!";
+        $errors['userImg'] = "You cannot upload files of this type!";
     }
 
-    if ($nameflag && $emailflag && $dobflag && $passflag) {
+    if (empty($errors['name']) && empty($errors['email']) && empty($errors['DOB']) && empty($errors['password']) && empty($errors['license']) && empty($errors['mobile']) && empty($errors['userImg'])) {
         //creating user in database
         include '../config/db_conn.php';
 
@@ -113,7 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
     else {
-        header("Location: signupCustomer.php");
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+
     }
 }
 
