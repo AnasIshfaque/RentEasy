@@ -122,5 +122,6 @@
 </footer>
 <!-- Footer -->
 <script src="../loginPage/loginModal.js"></script>
+<script src="../config/functions.php"></script>
 </body>
 </html>

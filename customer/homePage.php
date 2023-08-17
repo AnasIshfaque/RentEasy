@@ -9,9 +9,33 @@
     $email = $_SESSION['email'];
 ?>
 
-    <h1>Customer Home</h1>
-    <h2>Welcome <?php echo $_SESSION['name']; ?></h2>
-    
-<?php
-    include '../partials/footer.php';
-?>
+<h1 id="greetings">Welcome <?php echo $_SESSION['name']; ?>!</h1>
+
+<hr class="divider">
+
+<section>
+    <div class="rideTitle">
+        <img class="carIcon" src="../assets/images/icons/ride_car.png" alt="ride car">
+        <h2>Book a Ride</h2>
+    </div>
+    <div class="ride">
+        <div id="ride_map"></div>
+        <div class="rideInfo">
+            <h5>Ride details</h5>
+            <p>Select a car from the map</p>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<section>
+    <div class="rideTitle">
+        <img class="carIcon" src="../assets/images/icons/rent_car.png" alt="rent car">
+        <h2>Planned</h2>
+    </div>
+</section>
+
+<script src="../config/js/map_api.js"></script>
+</body>
+</html>

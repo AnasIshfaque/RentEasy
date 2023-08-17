@@ -9,6 +9,21 @@ $userImgSize = $_FILES['profileImg']['size'];
 $userImgError = $_FILES['profileImg']['error'];
 $userImgType = $_FILES['profileImg']['type'];
 
+// Handle uploaded license PDF
+$licensePdfName = $_FILES['license']['name'];
+$licensePdfTmpName = $_FILES['license']['tmp_name'];
+$licensePdfSize = $_FILES['license']['size'];
+$licensePdfError = $_FILES['license']['error'];
+$licensePdfType = $_FILES['license']['type'];
+
+// $licensePdfExt = pathinfo($licensePdfExt, PATHINFO_EXTENSION);
+// $allowedPdfExtensions = array('pdf');
+$licensePdfExt = explode('.', $licensePdfName);
+$licensePdfActualExt = strtolower(end($licensePdfExt));
+
+$allowedPdfExtensions = array('pdf');
+
+
 $userImgExt = explode('.', $userImgName);
 $userImgActualExt = strtolower(end($userImgExt));
 
@@ -68,11 +83,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mobile = test_input($_POST["mobile"]);
     }
 
-    if(in_array($userImgActualExt, $allowed)){
-        if($userImgError === 0){
-            if($userImgSize < 1000000){
-                $userImgNameNew = uniqid('', true).".".$userImgActualExt;
-                $userImgDestination = '../assets/images/'.$userImgNameNew;
+    if (in_array($userImgActualExt, $allowed)) {
+        if ($userImgError === 0) {
+            if ($userImgSize < 1000000) {
+                $userImgNameNew = uniqid('', true) . "." . $userImgActualExt;
+                $userImgDestination = '../assets/images/profileImg/' . $userImgNameNew;
                 move_uploaded_file($userImgTmpName, $userImgDestination);
             }
             else{
@@ -86,31 +101,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else{
         $errors['userImg'] = "You cannot upload files of this type!";
     }
+    //for license
+    if (in_array($licensePdfActualExt, $allowedPdfExtensions)) {
+        if ($licensePdfError === 0) {
+            if ($licensePdfSize < 1000000) {
+                $licensePdfNameNew = uniqid('', true) . "." . $licensePdfActualExt;
+                $licensePdfDestination = '../assets/images/pdf_uploads/' . $licensePdfNameNew;
+                move_uploaded_file($licensePdfTmpName, $licensePdfDestination);
+            } else {
+                echo "Your PDF file is too big!";
+            }
+        } else {
+            echo "There was an error uploading your PDF file!";
+        }
+    } else {
+        echo "You can only upload PDF files!";
+    }
+
+
 
     if (empty($errors['name']) && empty($errors['email']) && empty($errors['DOB']) && empty($errors['password']) && empty($errors['license']) && empty($errors['mobile']) && empty($errors['userImg'])) {
         //creating user in database
         include '../config/db_conn.php';
 
-        $query1 = "INSERT INTO user (name, email, dob, password, type_id) VALUES ('$name', '$email', '$DOB', '$password', 2)";
+        $query1 = "INSERT INTO user (name, email, dob, password, type_id, profileImg) VALUES ('$name', '$email', '$DOB', '$password', 2 ,'$userImgNameNew')";
         if (mysqli_query($conn, $query1)) {
             $last_id = mysqli_insert_id($conn);
             echo "New record created successfully";
-            $query2 = "INSERT INTO driver_info (ID, license, mobile, verified, status) VALUES ('$last_id','$license', '$mobile', 0, 'pending')";
+            $query2 = "INSERT INTO driver_info (ID, license, mobile, verified, status) VALUES ('$last_id','$licensePdfNameNew', '$mobile', 0, 'pending')";
             if (mysqli_query($conn, $query2)) {
                 echo "New record created successfully";
                 header("Location: ../landingPage/index.php");
             } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                echo "Error: " . $query2 . "<br>" . mysqli_error($conn);
             }
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            echo "Error: " . $query1 . "<br>" . mysqli_error($conn);
         }
-
-
-    }
-    else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-
+    } else {
+        header("Location: signupCustomer.php");
     }
 }
 
