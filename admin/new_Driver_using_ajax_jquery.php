@@ -142,11 +142,11 @@ include '../partials/footer.php';
                             </td>\
                             <td class="rmv_border">\
                                 <span class="text-muted mb-0 ">Applicant License:</span>\
-                                <span class="badge  rounded text-black d-inline ms-3">'+value['license']+'</span>\
+                                <span class="badge rounded text-black d-inline ms-3"><a href="../assets/images/pdf_uploads/'+ value['license'] + '" target = "_blank">View</a></span>\
                             </td>\
                             <td class="rmv_border last_row_'+value['ID']+'">';
-                                htmlString +='<a href="#" class="addDriver" title="Accept" data-candidate-id="'+value['ID']+'"><i class="fa-regular fa-circle-check add_driver"></i></a>\
-                                <a href="#"  class="deleteDriver" title="Delete" data-candidate-id="'+value['ID']+'"><i class="fas fa-trash-alt text-danger"></i></a>';
+                                htmlString +='<a href="#" class="addDriver" title="Accept" data-candidate-id="'+value['ID']+'"><i class="fa-regular fa-circle-check add_driver" style="margin: 0% 10%;"></i></a>\
+                                <a href="#"  class="deleteDriver btn-spacing" title="Delete" data-candidate-id="'+value['ID']+'"><i class="fas fa-trash-alt text-danger"></i></a>';
                         htmlString += '</td>\
                         </tr>\
                         </tr>';
