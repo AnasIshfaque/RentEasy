@@ -1,0 +1,64 @@
+#greetings {
+    text-align: center;
+    padding-top: .5em;
+}
+
+.rideTitle {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: .3em 1em;
+    gap: 1em;
+}
+
+.carIcon {
+    width: 70px;
+}
+
+.rideTitle > h2 {
+    font-weight: 700;
+}
+
+.ride {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+#ride_map {
+    width: 640px;
+    height: 480px;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+/* #ride_mapBox > p {
+    margin-bottom: 50%;
+    margin-top: 40%;
+    text-align: center;
+} */
+
+.divider {
+    margin: 0 1em;
+}
+
+.rideInfo {
+    width: 400px;
+    height: 480px;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    border-radius: 10px;
+}
+
+.rideInfo > h5 {
+    font-weight: 600;
+    margin-bottom: .5em;
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+    padding: .5em;
+}
+
+.rideInfo > p {
+    text-align: center;
+    margin-top: 50%
+}
