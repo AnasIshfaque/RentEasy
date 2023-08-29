@@ -20,6 +20,10 @@
                         <span class="badge rounded text-black d-inline ms-1"><?php echo $info[0]; ?></span>
                     </td>
                     <td class="rmv_border">
+                        <span class="text-muted mb-1">Customer Name:</span>
+                        <span class="badge text-black  rounded"><?php echo $info[1] ?></span>
+                    </td>
+                    <td class="rmv_border">
                         <span class="text-muted mb-0 ">Age:</span>
                         <span class="badge  rounded text-black d-inline ms-1"><?php echo $info[2]; ?></span>
                     </td>
@@ -30,17 +34,6 @@
                    
                 </tr>
 
-                <tr>
-                    <td class="first_row_col rmv_border">
-                        <span class="text-muted mb-1">Customer Name:</span>
-                        <span class="badge text-black  rounded"><?php echo $info[1] ?></span>
-                    </td>
-                    <td class="rmv_border">
-                        <span class="text-muted mb-0 ">Driving Lisence:</span>
-                        <span class="badge  rounded text-black d-inline ms-3">Ekota Tower,Sanarpar,Siddirganj,Narayanganj</span>
-                    </td>
-                    
-                </tr>
             </tr>
             <?php
                 }
