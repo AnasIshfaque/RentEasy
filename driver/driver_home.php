@@ -74,7 +74,7 @@ $serviceYears = $serviceTime;
 </section>
 
 <!-- driver skill -->
-<section class="skill">
+<section class="skill" id="skill">
   <div class="row">
     <div class="col v-skill">
       <h2>Skills</h2>
@@ -117,7 +117,7 @@ $serviceYears = $serviceTime;
                   <td>700tk</td>
                   <td>3 min ago</td>
                   <td>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-check"></i></button>
+                    <button type="button" class="btn btn-primary" id="btn-accept" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-check"></i></button>
                     <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                   </td>
                 </tr>
@@ -160,7 +160,7 @@ $serviceYears = $serviceTime;
               </tbody>
             </table>
             <div class="text-center">
-              <button type="button" class="btn btn-primary">View All</button>
+              <a href="tableView.php" class="btn btn-primary">View All</a>
             </div>
           </div>
         </div>
@@ -168,6 +168,11 @@ $serviceYears = $serviceTime;
     </div>
   </div>
 </section>
+<!-- if driver accept -->
+<section id="accept" class="accept" style="display: none;">
+  <?php include '../driver/driver_accept.php'; ?>
+</section>
+
 <!-- Rider review  -->
 <section>
   <div class="row d-flex justify-content-center">
@@ -301,6 +306,40 @@ $serviceYears = $serviceTime;
 
   </div>
 </section>
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const acceptButton = document.getElementById('btn-accept'); // Select the accept button by its ID
+  const skillSection = document.getElementById('skill'); // Select the skill section
+  const acceptSection = document.getElementById('accept'); // Select the accept section
+
+  acceptButton.addEventListener('click', () => {
+    skillSection.style.display = 'none'; // Hide the skill section
+    acceptSection.style.display = 'block'; // Show the accept section
+  });
+</script>
 <?php
 include '../partials/footer.php';
 ?>
