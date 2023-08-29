@@ -118,7 +118,7 @@ $serviceYears = $serviceTime;
                   <td>3 min ago</td>
                   <td>
                     <button type="button" class="btn btn-primary" id="btn-accept" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-check"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                   </td>
                 </tr>
                 <tr>
@@ -160,7 +160,7 @@ $serviceYears = $serviceTime;
               </tbody>
             </table>
             <div class="text-center">
-              <button type="button" class="btn btn-primary">View All</button>
+              <a href="tableView.php" class="btn btn-primary">View All</a>
             </div>
           </div>
         </div>
@@ -169,8 +169,8 @@ $serviceYears = $serviceTime;
   </div>
 </section>
 <!-- if driver accept -->
-<section id="accept" class="accept"  style="display: none;">
-<?php include '../driver/driver_accept.php'; ?>
+<section id="accept" class="accept" style="display: none;">
+  <?php include '../driver/driver_accept.php'; ?>
 </section>
 
 <!-- Rider review  -->
@@ -329,6 +329,7 @@ $serviceYears = $serviceTime;
     </div>
   </div>
 </div>
+
 <script>
   const acceptButton = document.getElementById('btn-accept'); // Select the accept button by its ID
   const skillSection = document.getElementById('skill'); // Select the skill section
