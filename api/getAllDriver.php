@@ -8,7 +8,7 @@
         $status = 'ERROR';
         $content = 'Failed to connect to database: ' . mysqli_connect_error();
     }else{
-        $sql = "SELECT latitude, longitude FROM driver_info JOIN location ON driver_info.loc_id=location.ID";
+        $sql = "SELECT latitude, longitude FROM driver_info JOIN location ON driver_info.loc_id=location.ID WHERE driver_info.isBooked= 0";
         $result = mysqli_query($conn, $sql);
 
         if(mysqli_num_rows($result) > 0){

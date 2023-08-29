@@ -1,12 +1,12 @@
 <?php
-    include '../config/db_conn.php';
-    include '../config/functions.php';
-    include '../partials/header.php';
-    if(isLoggedin() == false) {
-        header('Location:../landingPage/index.php');
-    }
-    $name = $_SESSION['name'];
-    $email = $_SESSION['email'];
+include '../config/db_conn.php';
+include '../config/functions.php';
+include '../partials/header.php';
+if (isLoggedin() == false) {
+    header('Location:../landingPage/index.php');
+}
+$name = $_SESSION['name'];
+$email = $_SESSION['email'];
 ?>
 
 <h1 id="greetings">Welcome <?php echo $_SESSION['name']; ?>!</h1>
@@ -20,9 +20,10 @@
     </div>
     <div class="ride">
         <div id="ride_map"></div>
-        <div class="rideInfo">
+        <div class="rideInfoBox">
             <h5>Ride details</h5>
-            <p>Select a car from the map</p>
+            <p id="carReqMsg">Select a car from the map</p>
+            <div id="rideInfo"></div>
         </div>
     </div>
 </section>
@@ -38,4 +39,5 @@
 
 <script src="../config/js/map_api.js"></script>
 </body>
+
 </html>
