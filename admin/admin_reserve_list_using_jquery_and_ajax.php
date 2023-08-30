@@ -119,20 +119,20 @@ include '../partials/footer.php';
                             </td>\
                             <td class="rmv_border last_row_'+value['ID']+'">';
 
-                        if (value['d_id'] != 100) {
-                            if (value['verified'] == 0) {
-                                htmlString += '<a href="#" type="submit" class="btn btn-link btn-sm px-3 accept_btn" data-ripple-color="dark" title="Accept" name="acceptBtn" data-rent-id="'+value['ID']+'">\
-                                    <i class="fa-regular fa-circle-check"></i>\
-                                </a>\
-                                <a href="#" type="submit" class="btn btn-link btn-sm px-3 delete_btn" data-ripple-color="dark" title="Reject" name="rejectBtn" data-rent-id="'+value['ID']+'">\
-                                    <i class="fa-sharp fa-solid fa-trash"></i>\
-                                </a>';
-                            }
+                        // if (value['d_id'] != 100) {
+                        //     if (value['verified'] == 0) {
+                        //         htmlString += '<a href="#" type="submit" class="btn btn-link btn-sm px-3 accept_btn" data-ripple-color="dark" title="Accept" name="acceptBtn" data-rent-id="'+value['ID']+'">\
+                        //             <i class="fa-regular fa-circle-check"></i>\
+                        //         </a>\
+                        //         <a href="#" type="submit" class="btn btn-link btn-sm px-3 delete_btn" data-ripple-color="dark" title="Reject" name="rejectBtn" data-rent-id="'+value['ID']+'">\
+                        //             <i class="fa-sharp fa-solid fa-trash"></i>\
+                        //         </a>';
+                        //     }
 
-                            if(value['verified']==1){
-                                htmlString+='<label > Accepted</label>';
-                            }
-                        } 
+                        //     if(value['verified']==1){
+                        //         htmlString+='<label > Accepted</label>';
+                        //     }
+                        // } 
                         htmlString += '</td>\
                         </tr>\
                         </tr>';
