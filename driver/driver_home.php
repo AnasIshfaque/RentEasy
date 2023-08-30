@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 include '../partials/header.php';
 include '../config/db_conn.php';
 include '../config/functions.php';
@@ -39,6 +42,17 @@ if ($result && mysqli_num_rows($result) > 0) {
 $completedTrips = $driverData['trip'];
 $fiveStarTrips = $driverData['countStar'];
 $serviceYears = $serviceTime;
+
+// Fetch rent requests along with customer information
+$queryRentRequests = "
+    SELECT r.*, c.name as customer_name, c.email as customer_email
+    FROM rent_request r
+    JOIN user c ON r.c_id = c.id
+    WHERE r.drv_id = $driverId
+    ORDER BY r.req_time DESC
+";
+
+$resultRentRequests = mysqli_query($conn, $queryRentRequests);
 ?>
 
 <link rel="stylesheet" href="../styles/driver.css">
@@ -109,54 +123,39 @@ $serviceYears = $serviceTime;
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mohamod jamil</td>
-                  <td>Boalkhali</td>
-                  <td>GEC more</td>
-                  <td>700tk</td>
-                  <td>3 min ago</td>
-                  <td>
-                    <button type="button" class="btn btn-primary" id="btn-accept" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-check"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Mohamod jamil</td>
-                  <td>Boalkhali</td>
-                  <td>GEC more</td>
-                  <td>700tk</td>
-                  <td>3 min ago</td>
-                  <td>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-check"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Mohamod jamil</td>
-                  <td>Boalkhali</td>
-                  <td>GEC more</td>
-                  <td>700tk</td>
-                  <td>3 min ago</td>
-                  <td>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-check"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Mohamod jamil</td>
-                  <td>Boalkhali</td>
-                  <td>GEC more</td>
-                  <td>700tk</td>
-                  <td>3 min ago</td>
-                  <td>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-check"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                  </td>
-                </tr>
+                <?php
+                $serial = 1;
+                while ($row = mysqli_fetch_assoc($resultRentRequests)) {
+                  echo '<tr>';
+                  echo '<th scope="row">' . $serial . '</th>';
+                  echo '<td>' . $row['customer_name'] . '</td>';
+                  // echo '<td>'  .$row['pickup_loc_id']. '</td>';
+                  // echo '<td>'  .$row['dest_loc_id']. '</td>';
+                ?>
+                  <script>
+                    fetch('https://revgeocode.search.hereapi.com/v1/revgeocode?at=' + customer_pos_lat + ',' + customer_pos_lng + '&limit=1&lang=en-US &apiKey=hpSPdwU1DaymxCsxbBkwD7eV0MtmFvNWhn_FY4aRlFc').then(response => {
+                      if (response.ok) {
+                        return response.json();
+                      } else {
+                        throw new Error(`Network response was not ok (status ${response.status})`);
+                      }
+                    }).then(data => {
+                      console.log(data.items[0].address.label);
+                    }).catch(error => {
+                      console.error('There has been a problem with your fetch operation:', error);
+                    });
+                  </script>
+                <?php
+                  echo '<td>' . $row['rent_fee'] . '</td>';
+                  echo '<td>' . $row['req_time'] . '</td>';
+                  echo '<td>';
+                  echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-check"></i></button>';
+                  echo '<button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>';
+                  echo '</td>';
+                  echo '</tr>';
+                  $serial++;
+                }
+                ?>
               </tbody>
             </table>
             <div class="text-center">
