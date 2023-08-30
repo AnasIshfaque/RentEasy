@@ -128,19 +128,47 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
                 while ($row = mysqli_fetch_assoc($resultRentRequests)) {
                   echo '<tr>';
                   echo '<th scope="row">' . $serial . '</th>';
-                  echo '<td>' . $row['customer_name'] . '</td>';
+                  echo '<td id="customername_El">' . $row['customer_name'] . '</td>';
                   // echo '<td>'  .$row['pickup_loc_id']. '</td>';
-                  // echo '<td>'  .$row['dest_loc_id']. '</td>';
+                  // echo '<td>'  . $row['dest_loc_id'] . '</td>';
                 ?>
                   <script>
-                    fetch('https://revgeocode.search.hereapi.com/v1/revgeocode?at=' + customer_pos_lat + ',' + customer_pos_lng + '&limit=1&lang=en-US &apiKey=hpSPdwU1DaymxCsxbBkwD7eV0MtmFvNWhn_FY4aRlFc').then(response => {
-                      if (response.ok) {
-                        return response.json();
-                      } else {
-                        throw new Error(`Network response was not ok (status ${response.status})`);
-                      }
-                    }).then(data => {
-                      console.log(data.items[0].address.label);
+                    fetch('../api/getGeoCoordinates.php', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        pickup_loc_id: <?php echo $row['pickup_loc_id']; ?>,
+                        dest_loc_id: <?php echo $row['dest_loc_id']; ?>
+                      }),
+                    }).then(response => response.json()).then(data => {
+                      console.log(data.content[0]);
+
+                      fetch('https://revgeocode.search.hereapi.com/v1/revgeocode?at=' + data.content[0].latitude + ',' + data.content[0].longitude + '&limit=1&lang=en-US &apiKey=hpSPdwU1DaymxCsxbBkwD7eV0MtmFvNWhn_FY4aRlFc').then(response => response.json()).then(data => {
+                        // document.createElement('td').innerHTML = data.items[0].address.label;
+                        const pickup_loc_cell_El = document.createElement('td');
+                        pickup_loc_cell_El.id = 'pickup_loc_cell';
+                        pickup_loc_cell_El.innerHTML = data.items[0].address.label;
+                        const c_name_el = document.getElementById('customername_El');
+                        c_name_el.insertAdjacentElement('afterend', pickup_loc_cell_El);
+                        console.log(data.items[0].address.label);
+                      }).catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                      });
+
+                      fetch('https://revgeocode.search.hereapi.com/v1/revgeocode?at=' + data.content[1].latitude + ',' + data.content[1].longitude + '&limit=1&lang=en-US &apiKey=hpSPdwU1DaymxCsxbBkwD7eV0MtmFvNWhn_FY4aRlFc').then(response => response.json()).then(data => {
+                        document.createElement('td').innerHTML = data.items[0].address.label;
+                        const dest_loc_cell_El = document.createElement('td');
+                        dest_loc_cell_El.id = 'dest_loc_cell';
+                        dest_loc_cell_El.innerHTML = data.items[0].address.label;
+                        const pickup_loc_cell_El = document.getElementById('pickup_loc_cell');
+                        pickup_loc_cell_El.insertAdjacentElement('afterend', dest_loc_cell_El);
+                        console.log(data.items[0].address.label);
+                      }).catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                      });
+
                     }).catch(error => {
                       console.error('There has been a problem with your fetch operation:', error);
                     });
