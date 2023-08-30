@@ -20,7 +20,7 @@
         $loc_row = mysqli_fetch_assoc($result1);
         $loc_id = $loc_row["ID"];
 
-        $query2 = "SELECT name, mobile, model, passenger, v_type, image, hasAC FROM driver_info JOIN user ON driver_info.ID=user.ID JOIN vehicle ON driver_info.v_id=vehicle.ID WHERE driver_info.loc_id=$loc_id;";
+        $query2 = "SELECT driver_info.ID as drv_id, name, mobile, model, passenger, v_type, image, hasAC FROM driver_info JOIN user ON driver_info.ID=user.ID JOIN vehicle ON driver_info.v_id=vehicle.ID WHERE driver_info.loc_id=$loc_id;";
         $result2 = mysqli_query($conn, $query2);
 
         if(mysqli_num_rows($result2) > 0){

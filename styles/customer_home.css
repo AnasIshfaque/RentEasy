@@ -181,6 +181,10 @@
     padding: .5em;
 }
 
-.ride_price {
+#ride_price {
     margin-bottom: 1.4em;
+}
+
+#route_dis {
+    margin-bottom: 1em;
 }
