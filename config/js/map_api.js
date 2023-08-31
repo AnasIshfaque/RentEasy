@@ -260,7 +260,7 @@ if (navigator.geolocation) {
                                     }).then(response => response.json()).then(data => {
                                         console.log(data);
                                         if(data.status === "OK"){
-                                            if(data.content === "pending"){
+                                            if(data.content === "accepted"){
                                                 // ride_req_status = "accepted";
                                                 rideInfo_div.innerHTML = "";
                                                 rideInfo_div.innerHTML = `
@@ -268,32 +268,15 @@ if (navigator.geolocation) {
                                                 <p>Driver is coming!</p>
                                                 </div>
                                                 `;
-                                                setTimeout(() => {
-                                                    rideInfo_div.innerHTML = "";
-                                                rideInfo_div.innerHTML = `
-                                                <div class="loading_pg">
-                                                <p>Driver has arrived</p>
-                                                </div>
-                                                `;}, 5000);
-                                                setTimeout(() => {
-                                                    rideInfo_div.innerHTML = "";
-                                                rideInfo_div.innerHTML = `
-                                                <div class="loading_pg">
-                                                <p>Trip has started!</p>
-                                                </div>
-                                                `;}, 5000);
-                                                setTimeout(() => {
-                                                    rideInfo_div.innerHTML = "";
-                                                rideInfo_div.innerHTML = `
-                                                <div class="loading_pg">
-                                                <p>Trip has ended!</p>
-                                                <a href="../paymentApi/checkout.php" class="bookBtn">Pay</a>
-                                                </div>
-                                                `;}, 8000);
 
                                             }
                                             else if(data.content === "rejected"){
-                                                ride_req_status = "rejected";
+                                                rideInfo_div.innerHTML = "";
+                                                rideInfo_div.innerHTML = `<p>Ride request rejected</p>`;
+                                            }
+                                            else if(data.content === "timeout"){
+                                                rideInfo_div.innerHTML = "";
+                                                rideInfo_div.innerHTML = `<p>Driver is busy right now</p>`;
                                             }
                                         }
                                         else{
@@ -304,14 +287,7 @@ if (navigator.geolocation) {
                                     });
                                 }, 10000);
                                 
-                                // else if(ride_req_status === "rejected"){
-                                //     rideInfo_div.innerHTML = "";
-                                //     rideInfo_div.innerHTML = `<p>Ride request rejected</p>`;
-                                // }
-                                // else if(ride_req_status === "timeout"){
-                                //     rideInfo_div.innerHTML = "";
-                                //     rideInfo_div.innerHTML = `<p>Driver is busy right now</p>`;
-                                // }
+
                             }
                             else{
                                 alert("Ride booking failed");

@@ -96,14 +96,6 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
         <h4>license</h4>
         <p><a href="../assets/images/pdf_uploads/<?php echo $driverData['license']; ?>">View</a> your linecse</p>
       </div>
-      <div class="drive">
-        <h4>Drive</h4>
-        <p>SUV, Crossover, Sedan, Coupe</p>
-      </div>
-      <div class="tech">
-        <h4>Technical skill</h4>
-        <p>strong knowledge of traffic laws, maintenance knowledge</p>
-      </div>
     </div>
     <div class="col-7">
       <h3>Request from customer</h3>
@@ -150,21 +142,21 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
                           skillSection.style.display = 'none'; // Hide the skill section
                           acceptSection.style.display = 'block'; // Show the accept section
 
-                          // const platform = new H.service.Platform({
-                          //     'apikey': 'ddtf4_u46OVQmivpyziE5miLbdduJw0UNaXmCz_kwGE'
-                          // });
+                          const platform = new H.service.Platform({
+                              'apikey': 'ddtf4_u46OVQmivpyziE5miLbdduJw0UNaXmCz_kwGE'
+                          });
 
-                          // Obtain the default map types from the platform object:
-                          // var defaultLayers = platform.createDefaultLayers();
+                          //Obtain the default map types from the platform object:
+                          var defaultLayers = platform.createDefaultLayers();
 
-                          // let loadingP = document.getElementById("loading");
-                          // loadingP.remove();
+                          let loadingP = document.getElementById("loading");
+                          loadingP.remove();
 
-                          // Instantiate (and display) a map object:
-                          // var map = new H.Map(document.getElementById('drv_mapContainer'),
-                          //     defaultLayers.vector.normal.map, {
-                          //     zoom: 15
-                          // });
+                          //Instantiate (and display) a map object:
+                          var map = new H.Map(document.getElementById('drv_mapContainer'),
+                              defaultLayers.vector.normal.map, {
+                              zoom: 15
+                          });
                         }
 
                       }).catch(error => {

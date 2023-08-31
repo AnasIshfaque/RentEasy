@@ -1,9 +1,10 @@
+
 <?php 
 /* PHP */
 $post_data = array();
 $post_data['store_id'] = "renta64e1a687eb650";
 $post_data['store_passwd'] = "renta64e1a687eb650@ssl";
-$post_data['total_amount'] = "103";
+$post_data['total_amount'] = "41";
 $post_data['currency'] = "BDT";
 $post_data['tran_id'] = "SSLCZ_TEST_".uniqid();
 $post_data['success_url'] = "http://localhost/sslommerze/success.php";
@@ -50,10 +51,10 @@ $post_data['cart'] = json_encode(array(
     array("product"=>"DHK TO BRS AC A3","amount"=>"200.00"),
     array("product"=>"DHK TO BRS AC A4","amount"=>"200.00")
 ));
-$post_data['product_amount'] = "100";
-$post_data['vat'] = "5";
-$post_data['discount_amount'] = "5";
-$post_data['convenience_fee'] = "3";
+$post_data['product_amount'] = "41";
+$post_data['vat'] = "0";
+$post_data['discount_amount'] = "0";
+$post_data['convenience_fee'] = "0";
 
 
 # REQUEST SEND TO SSLCOMMERZ

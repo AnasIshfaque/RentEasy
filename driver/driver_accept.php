@@ -1,15 +1,24 @@
+    <?php
+        include '../config/db_conn.php';
+
+        $id = $_GET['id'];
+
+        $sql = "SELECT * FROM renting WHERE customerId=$id";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+    ?>
     <section class="accept">
             <div class="row">
                 <div class="col" style="margin-left:30px;">
                     <h2>Customer details</h2>
-                    <p>Name: <strong>Anas</strong></p>
-                    <p>Phone: <strong>01734354244</strong></p>
-                    <p>Email: <strong>anas2000@gmail.com</strong></p>
+                    <p>Name: <strong><?php echo $row['name'] ?></strong></p>
+                    <p>Phone: <strong><?php echo $row['mobile'] ?></strong></p>
+                    <p>Email: <strong><?php echo $row['email'] ?></strong></p>
                     <div class="p_location">
-                        <p>pickup: Ring Road, Dhaka, Bangladesh </p>
-                        <p>destination: Khaled Mosharaf Avenue, ঢাকা, বাংলাদেশ</p>
+                        <p>pickup: <?php echo $row['pickup_loc'] ?> </p>
+                        <p>destination: <?php echo $row['dest_loc'] ?></p>
                     </div>
-                    <p>Amount:41 BDT</p>
+                    <p>Amount:<?php echo $row['amount'] ?>BDT</p>
                     <div id="action_btns">
                         <button class="endBtn" id="strtBtn" onclick="startTrip()">start Trip</button>
                     </div>
@@ -17,7 +26,7 @@
                 </div>
                 <div class="col-7">
                     <h3>Location</h3>
-                    <img src="../assets/images/transport.png" style="width:720px;height: 560px;" alt="">
+                    <div class="drv_mapContainer"></div>
                 </div>
             </div>
     </section>
@@ -31,10 +40,5 @@
             actionBtns.innerHTML = `
                <p>Ride is ongoing!</p>
             `;
-            setTimeout(() => {
-                actionBtns.innerHTML = `
-                    <button class="endBtn" id="endBtn" onclick="endTrip()">End Trip</button>
-                `;
-            }, 7000);
         }
     </script>

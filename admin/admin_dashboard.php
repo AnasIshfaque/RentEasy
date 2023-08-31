@@ -16,7 +16,7 @@
         </div>
         <div class="car_number_one">
         <?php 
-            $sql1="SELECT Date(pickup_time) as pick_date, Time(pickup_time) as pick_time, Date(dst_time) as desti_date, Time(dst_time) as desti_time, vehicle.image FROM renting INNER JOIN vehicle on vehicle.ID=renting.v_id ORDER BY dst_time DESC LIMIT 1";
+            $sql1="SELECT renting.model, renting.cartype, renting.pickup, renting.dst, Date(pickup_time) as pick_date, Time(pickup_time) as pick_time, Date(dst_time) as desti_date, Time(dst_time) as desti_time, vehicle.image FROM renting INNER JOIN vehicle on vehicle.ID=renting.v_id ORDER BY dst_time DESC LIMIT 1";
             $result2=mysqli_query($conn,$sql1);
             $info1 = mysqli_fetch_array($result2)
         ?>
@@ -24,21 +24,21 @@
         <div class="first_car">
             <img src="uploads/<?php echo $info1['image'] ?>" id="latest_Car_img" alt="Honda CR-V" width="45%" height="90%">
                 <div class="car_details">
-                    <h3 class="car_model">Honda CR-V</h3>
-                    <p class="car_model">SUV</p>
+                    <h3 class="car_model"><?php echo $info1['model'] ?></h3>
+                    <p class="car_model"><?php echo $info1['cartype'] ?></p>
                 </div>
         </div>
         
         <h6 style="margin-left: 1%;">Pick-Up</h6>
         <div class="first_car_pickup">
-            <i class="fa-solid fa-location-dot fa-lg location_icon"></i> <input type="text" name="" id="" placeholder="Narayanganj" readonly class="pick_up_details">
+            <i class="fa-solid fa-location-dot fa-lg location_icon"></i> <input type="text" name="" id="" placeholder="<?php echo $info1['pickup'] ?>" readonly class="pick_up_details">
             <i class="fa-regular fa-calendar-days fa-lg location_icon"></i><input type="text" name="" id="" placeholder="<?php echo $info1['pick_date'] ?>" readonly class="pick_up_details">
             <i class="fa-regular fa-clock fa-lg location_icon"></i><input type="text" name="" id="" placeholder="<?php echo $info1['pick_time'] ?>" readonly>
         </div>
 
         <h6 style="margin-left: 1%;">Drop-Off</h6>
         <div class="first_car_pickup">
-            <i class="fa-solid fa-location-dot fa-lg location_icon"></i> <input type="text" name="" id="" placeholder="UIU Permanent Campus" readonly class="pick_up_details">
+            <i class="fa-solid fa-location-dot fa-lg location_icon"></i> <input type="text" name="" id="" placeholder="<?php echo $info1['dst'] ?>" readonly class="pick_up_details">
             <i class="fa-regular fa-calendar-days fa-lg location_icon"></i><input type="text" name="" id="" placeholder="<?php echo $info1['desti_date'] ?>" readonly class="pick_up_details">
             <i class="fa-regular fa-clock fa-lg location_icon"></i><input type="text" name="" id="" placeholder="<?php echo $info1['desti_time'] ?>" readonly>
         </div>
@@ -59,7 +59,7 @@
                 </div>
                 <tbody>
                 <?php
-                    $sql="SELECT vehicle.model,vehicle.number, vehicle.v_type,vehicle.image, Date(dst_time) as date, Time(dst_time) as time FROM renting INNER JOIN vehicle on vehicle.ID=renting.v_id ORDER BY dst_time DESC LIMIT 5";
+                    $sql="SELECT renting.rent_fee, vehicle.model,vehicle.number, vehicle.v_type,vehicle.image, Date(dst_time) as date, Time(dst_time) as time FROM renting INNER JOIN vehicle on vehicle.ID=renting.v_id ORDER BY dst_time DESC LIMIT 5";
                     $result1=mysqli_query($conn,$sql);
                     while ($info = mysqli_fetch_array($result1)){
                 ?>
@@ -75,7 +75,7 @@
                         </td>
                         <td>
                             <p><?php echo $info['v_type'] ?></p>
-                            <p class="recent_vehicle_td">Tk 3150</p>
+                            <p class="recent_vehicle_td"><?php echo $info['rent_fee'] ?> BDT</p>
                         </td>
                     </tr>
                     <?php
