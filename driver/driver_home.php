@@ -45,7 +45,7 @@ $serviceYears = $serviceTime;
 
 // Fetch rent requests along with customer information
 $queryRentRequests = "
-    SELECT r.*, c.name as customer_name, c.email as customer_email
+    SELECT r.*, c.id as customer_id, c.name as customer_name, c.email as customer_email
     FROM rent_request r
     JOIN user c ON r.c_id = c.id
     WHERE r.drv_id = $driverId AND r.drv_reply = 'pending'
@@ -59,8 +59,8 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
 <!-- profile section -->
 <section class="profile">
   <div class="imgDiv">
-    <img class="proImg" src="../assets/images/ProfileImg/<?php echo $driverData['profileImg']; ?>" alt="">
-    <h2><?php echo $driverData['name']; ?></h2>
+  <img class="proImg" src="../assets/images/ProfileImg/<?php echo $driverData['profileImg']; ?>" alt="">
+  <h2><?php echo $driverData['name']; ?></h2>
   </div>
   <div class="tripInfo">
     <div class="t1">
@@ -149,10 +149,26 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
                           // driver_table.remove();
                           skillSection.style.display = 'none'; // Hide the skill section
                           acceptSection.style.display = 'block'; // Show the accept section
+
+                          // const platform = new H.service.Platform({
+                          //     'apikey': 'ddtf4_u46OVQmivpyziE5miLbdduJw0UNaXmCz_kwGE'
+                          // });
+
+                          // Obtain the default map types from the platform object:
+                          // var defaultLayers = platform.createDefaultLayers();
+
+                          // let loadingP = document.getElementById("loading");
+                          // loadingP.remove();
+
+                          // Instantiate (and display) a map object:
+                          // var map = new H.Map(document.getElementById('drv_mapContainer'),
+                          //     defaultLayers.vector.normal.map, {
+                          //     zoom: 15
+                          // });
                         }
 
                       }).catch(error => {
-                        console.error('There has been a problem with your fetch operation:', error);
+                        console.log('There has been a problem with your fetch operation:', error);
                       });
                     }
 
@@ -219,14 +235,15 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
 </section>
 <!-- if driver accept -->
 <section id="accept" class="accept" style="display: none;">
-  <?php include '../driver/driver_accept.php'; ?>
+      <!-- <div class="drv_mapContainer"></div> -->
+      <?php include_once './driver_accept.php';?>
 </section>
 
 <!-- Rider review  -->
-<section>
+<!-- <section>
   <div class="row d-flex justify-content-center">
     <div class="col-md-10 col-xl-8 text-center">
-      <h3 class="mb-4">Testimonials</h3>
+      <h3 class="mb-4 mt-4">Testimonials</h3>
     </div>
   </div>
 
@@ -314,12 +331,12 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
       </ul>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <!-- driver achivment -->
 
-<section class="achievment">
+<!-- <section class="achievment">
   <h2>Your achievments</h2>
   <div class="add-achievments">
     <?php
@@ -354,7 +371,7 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
     ?>
 
   </div>
-</section>
+</section> -->
 <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Launch static backdrop modal
@@ -384,10 +401,10 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
   const skillSection = document.getElementById('skill'); // Select the skill section
   const acceptSection = document.getElementById('accept'); // Select the accept section
 
-  acceptButton.addEventListener('click', () => {
-    skillSection.style.display = 'none'; // Hide the skill section
-    acceptSection.style.display = 'block'; // Show the accept section
-  });
+  // acceptButton.addEventListener('click', () => {
+  //   skillSection.style.display = 'none'; // Hide the skill section
+  //   acceptSection.style.display = 'block'; // Show the accept section
+  // });
 </script>
 <?php
 include '../partials/footer.php';

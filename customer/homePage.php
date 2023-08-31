@@ -19,7 +19,9 @@ $email = $_SESSION['email'];
         <h2>Book a Ride</h2>
     </div>
     <div class="ride">
+
         <div id="ride_map"></div>
+        
         <div class="rideInfoBox">
             <h5>Ride details</h5>
             <p id="carReqMsg">Select a car from the map</p>

@@ -70,3 +70,37 @@
     /* margin-top: 10px; */
     gap: 10px;
   }
+
+  .drv_mapContainer {
+    width: 720px;
+    height: 560px;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    border-radius: 10px;
+    margin-bottom: 1em;
+    /* z-index: -1; */
+    overflow: hidden;
+  }
+
+  .endBtn {
+    margin: .1em auto;
+    width: 50%;
+    text-align: center;
+    padding: .5em;
+    border-radius: 5px;
+    background-color: lightseagreen;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .endBtn:hover {
+    background-color: #ff7f00;
+  }
+
+  .customerInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }

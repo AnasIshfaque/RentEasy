@@ -188,3 +188,12 @@
 #route_dis {
     margin-bottom: 1em;
 }
+
+.loading_pg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+    margin-top: 7em;
+}

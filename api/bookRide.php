@@ -31,9 +31,10 @@
 
         $sql = "INSERT INTO rent_request (c_id, drv_id, pickup_loc_id, dest_loc_id, drv_reply, rent_fee) VALUES ('$customerID', '$driverID', '$pickup_loc_id','$dest_loc_id','pending','$price');";
         $result = mysqli_query($conn, $sql);
+        $req_id = mysqli_insert_id($conn);
 
         mysqli_close($conn);
-        $data = ["status" => $status];
+        $data = ["status" => $status, "content" => $req_id];
 
         header('Content-type: application/json');
         echo json_encode($data);

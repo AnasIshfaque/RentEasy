@@ -1,4 +1,5 @@
-var platform = new H.service.Platform({
+
+const platform = new H.service.Platform({
     'apikey': 'hpSPdwU1DaymxCsxbBkwD7eV0MtmFvNWhn_FY4aRlFc'
 });
 
@@ -59,6 +60,7 @@ let customerLng;
 let driverID;
 let rideInfo_div = document.getElementById("rideInfo");
 
+let req_id;
 if (navigator.geolocation) {
     let html_driver_details;
     let ride_detail_info;
@@ -215,8 +217,8 @@ if (navigator.geolocation) {
                 fetch('../api/getCurrentUser.php').then(response => 
                    response.json()
                 ).then(data => {
-                    console.log(data.content[0]);
-                    console.log(driverID);
+                    // console.log(data.content[0]);
+                    // console.log(driverID);
                     
                     if(data.status === "OK"){
 
@@ -237,37 +239,78 @@ if (navigator.geolocation) {
                             },
                             body: JSON.stringify(req_entry)
                         }).then(response => response.json()).then(data => {
-                            console.log(data);
+                            console.log("request ID: ",data.content);
                             if(data.status === "OK"){
                                 // alert("Ride request sent successfully");
                                 // window.location.href = "index.php";
                                 rideInfo_div.innerHTML = "";
-                                rideInfo_div.innerHTML = `<p>Waiting for response...</p>`;
-                                // while(1){
-                                //     fetch('../api/getRideStatus.php',{
-                                //         method: 'POST',
-                                //         headers: {
-                                //             'Content-type': 'application/json'
-                                //         },
-                                //         body: JSON.stringify(req_entry)
-                                //     }).then(response => response.json()).then(data => {
-                                //         console.log(data);
-                                //         if(data.status === "OK"){
-                                //             if(data.content[0].status === "accepted"){
-                                //                 alert("Ride accepted");
-                                //                 return;
-                                //             }
-                                //             else if(data.content[0].status === "rejected"){
-                                //                 alert("Ride rejected");
-                                //                 window.location.href = "index.php";
-                                //             }
-                                //         }
-                                //         else{
-                                //             alert("Ride booking failed");
-                                //         }
-                                //     }).catch(error => {
-                                //         console.log('There has been a problem with your fetch operation:', error);
-                                //     });
+                                rideInfo_div.innerHTML = `
+                                <div class="loading_pg">
+                                <img src="../assets/images/Rolling-2s-200px.svg" alt="loading">
+                                <p>Waiting for response...</p>
+                                </div>`;
+                                let ride_req_status;
+                                setTimeout(() => {
+                                    fetch('../api/getRideStatus.php',{
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify({req_id: data.content})
+                                    }).then(response => response.json()).then(data => {
+                                        console.log(data);
+                                        if(data.status === "OK"){
+                                            if(data.content === "pending"){
+                                                // ride_req_status = "accepted";
+                                                rideInfo_div.innerHTML = "";
+                                                rideInfo_div.innerHTML = `
+                                                <div class="loading_pg">
+                                                <p>Driver is coming!</p>
+                                                </div>
+                                                `;
+                                                setTimeout(() => {
+                                                    rideInfo_div.innerHTML = "";
+                                                rideInfo_div.innerHTML = `
+                                                <div class="loading_pg">
+                                                <p>Driver has arrived</p>
+                                                </div>
+                                                `;}, 5000);
+                                                setTimeout(() => {
+                                                    rideInfo_div.innerHTML = "";
+                                                rideInfo_div.innerHTML = `
+                                                <div class="loading_pg">
+                                                <p>Trip has started!</p>
+                                                </div>
+                                                `;}, 5000);
+                                                setTimeout(() => {
+                                                    rideInfo_div.innerHTML = "";
+                                                rideInfo_div.innerHTML = `
+                                                <div class="loading_pg">
+                                                <p>Trip has ended!</p>
+                                                <a href="../paymentApi/checkout.php" class="bookBtn">Pay</a>
+                                                </div>
+                                                `;}, 8000);
+
+                                            }
+                                            else if(data.content === "rejected"){
+                                                ride_req_status = "rejected";
+                                            }
+                                        }
+                                        else{
+                                            alert("Ride booking failed");
+                                        }
+                                    }).catch(error => {
+                                        console.log('There has been a problem with your fetch operation:', error);
+                                    });
+                                }, 10000);
+                                
+                                // else if(ride_req_status === "rejected"){
+                                //     rideInfo_div.innerHTML = "";
+                                //     rideInfo_div.innerHTML = `<p>Ride request rejected</p>`;
+                                // }
+                                // else if(ride_req_status === "timeout"){
+                                //     rideInfo_div.innerHTML = "";
+                                //     rideInfo_div.innerHTML = `<p>Driver is busy right now</p>`;
                                 // }
                             }
                             else{
@@ -468,7 +511,7 @@ function handleMapClick(event) {
                 console.log(data.routes[0].sections[0].summary.length);
                 dis = data.routes[0].sections[0].summary.length;
                 let ride_price = document.getElementById("ride_price");
-                price = (dis * 0.02).toFixed(2)
+                price = (dis * 0.02).toFixed(0)
                 ride_price.innerHTML = `
                     <span>Ride fee:</span>
                     <b>${price} BDT</b>
