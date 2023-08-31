@@ -48,7 +48,7 @@ $queryRentRequests = "
     SELECT r.*, c.name as customer_name, c.email as customer_email
     FROM rent_request r
     JOIN user c ON r.c_id = c.id
-    WHERE r.drv_id = $driverId
+    WHERE r.drv_id = $driverId AND r.drv_reply = 'pending'
     ORDER BY r.req_time DESC
 ";
 
@@ -65,19 +65,19 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
   <div class="tripInfo">
     <div class="t1">
       <h2><?php echo $driverData['trip']; ?></h2>
-      <label for="">Trip</label>
+      <label for="trip">Trip</label>
     </div>
     <div class="t1">
       <h2><?php echo $driverData['rating']; ?> <i class="fa-solid fa-star" style="color: #ffc800;"></i></h2>
-      <label for="">Rating</label>
+      <label for="rating">Rating</label>
     </div>
     <div class="t1">
       <h2><?php echo $driverData['total_income']; ?>tk</h2>
-      <label for="">Total income</label>
+      <label for="total income">Total income</label>
     </div>
     <div class="t1">
       <h2><?php echo $serviceTime; ?></h2>
-      <label for="">Service Time</label>
+      <label for="service time">Service Time</label>
     </div>
   </div>
   <hr>
@@ -106,16 +106,16 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
       </div>
     </div>
     <div class="col-7">
-      <h3>Request form customer</h3>
+      <h3>Request from customer</h3>
       <div class="container">
         <div class="row">
           <div class="col-12 table-container">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="req_list_table">
               <thead>
                 <tr>
                   <th scope="col">Serial</th>
                   <th scope="col">Customer</th>
-                  <th scope="col">pickup</th>
+                  <th scope="col">Pickup</th>
                   <th scope="col">Destination</th>
                   <th scope="col">Price</th>
                   <th scope="col">Time</th>
@@ -131,6 +131,34 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
                   echo '<td id="customername_El">' . $row['customer_name'] . '</td>';
                 ?>
                   <script>
+                    function acceptDuty() {
+                      // console.log('Accept duty');
+                      fetch('../api/acceptDuty.php', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                          req_id: <?php echo $row['id']; ?>,
+                          drv_id: <?php echo $row['drv_id']; ?>
+                        }),
+                      }).then(response => response.json()).then(data => {
+                        console.log(data);
+                        if (data.status == 'OK') {
+                          // const driver_table = document.getElementById('req_list_table');
+                          // driver_table.remove();
+                          skillSection.style.display = 'none'; // Hide the skill section
+                          acceptSection.style.display = 'block'; // Show the accept section
+                        }
+
+                      }).catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                      });
+                    }
+
+                    function rejectDuty() {
+                      console.log('Reject duty');
+                    }
                     fetch('../api/getGeoCoordinates.php', {
                       method: 'POST',
                       headers: {
@@ -145,7 +173,7 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
 
                       fetch('https://revgeocode.search.hereapi.com/v1/revgeocode?at=' + data.content[0].latitude + ',' + data.content[0].longitude + '&limit=1&lang=en-US &apiKey=hpSPdwU1DaymxCsxbBkwD7eV0MtmFvNWhn_FY4aRlFc').then(response => response.json()).then(data => {
                         const destLocCellEl = document.getElementById('pickup_loc_cell_<?php echo $serial; ?>');
-                        destLocCellEl.innerHTML = data.items[0].address.label + " Pickup";
+                        destLocCellEl.innerHTML = data.items[0].address.label;
                         console.log(data.items[0].address.label);
                       }).catch(error => {
                         console.error('There has been a problem with your fetch operation:', error);
@@ -153,7 +181,7 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
 
                       fetch('https://revgeocode.search.hereapi.com/v1/revgeocode?at=' + data.content[1].latitude + ',' + data.content[1].longitude + '&limit=1&lang=en-US &apiKey=hpSPdwU1DaymxCsxbBkwD7eV0MtmFvNWhn_FY4aRlFc').then(response => response.json()).then(data => {
                         const destLocCellEl1 = document.getElementById('dest_loc_cell_<?php echo $serial; ?>');
-                        destLocCellEl1.innerHTML = data.items[0].address.label + " Destination";
+                        destLocCellEl1.innerHTML = data.items[0].address.label;
                         console.log(data.items[0].address.label);
                       }).catch(error => {
                         console.error('There has been a problem with your fetch operation:', error);
@@ -170,9 +198,9 @@ $resultRentRequests = mysqli_query($conn, $queryRentRequests);
                 echo '<td id="dest_loc_cell_' . $serial . '"></td>';
                   echo '<td>' . $row['rent_fee'] . '</td>';
                   echo '<td>' . $row['req_time'] . '</td>';
-                  echo '<td>';
-                  echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-check"></i></button>';
-                  echo '<button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>';
+                  echo '<td class="actionBtns">';
+                  echo '<button type="button" class="btn btn-primary" onclick="acceptDuty()"><i class="fa-solid fa-check"></i></button>';
+                  echo '<button type="button" class="btn btn-danger" onclick="rejectDuty()"><i class="far fa-trash-alt"></i></button>';
                   echo '</td>';
                   echo '</tr>';
                   $serial++;

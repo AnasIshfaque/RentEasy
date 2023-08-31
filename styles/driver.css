@@ -63,3 +63,10 @@
   .v-skill,p,a{
     margin-left:20px;
   }
+
+  .actionBtns {
+    display: flex;
+    justify-content: space-evenly;
+    /* margin-top: 10px; */
+    gap: 10px;
+  }

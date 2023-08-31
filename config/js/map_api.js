@@ -239,8 +239,36 @@ if (navigator.geolocation) {
                         }).then(response => response.json()).then(data => {
                             console.log(data);
                             if(data.status === "OK"){
-                                alert("Ride booked successfully");
+                                // alert("Ride request sent successfully");
                                 // window.location.href = "index.php";
+                                rideInfo_div.innerHTML = "";
+                                rideInfo_div.innerHTML = `<p>Waiting for response...</p>`;
+                                // while(1){
+                                //     fetch('../api/getRideStatus.php',{
+                                //         method: 'POST',
+                                //         headers: {
+                                //             'Content-type': 'application/json'
+                                //         },
+                                //         body: JSON.stringify(req_entry)
+                                //     }).then(response => response.json()).then(data => {
+                                //         console.log(data);
+                                //         if(data.status === "OK"){
+                                //             if(data.content[0].status === "accepted"){
+                                //                 alert("Ride accepted");
+                                //                 return;
+                                //             }
+                                //             else if(data.content[0].status === "rejected"){
+                                //                 alert("Ride rejected");
+                                //                 window.location.href = "index.php";
+                                //             }
+                                //         }
+                                //         else{
+                                //             alert("Ride booking failed");
+                                //         }
+                                //     }).catch(error => {
+                                //         console.log('There has been a problem with your fetch operation:', error);
+                                //     });
+                                // }
                             }
                             else{
                                 alert("Ride booking failed");
